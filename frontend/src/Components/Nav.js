@@ -12,7 +12,7 @@ export default class Nab extends Component{
                     <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">
-                        <Link to='/'>Produkty</Link>
+                        <Link to='/products'>Produkty</Link>
                         </Nav>
                         <Nav >
                         <Link style={{color:"mediumspringgreen"}} eventKey={2} to="/cart" className="justify-content-end">

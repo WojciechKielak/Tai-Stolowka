@@ -10,7 +10,7 @@ export default class Details extends Component {
             {(value)=> {
                 // const {id, title, img, info, price, company, inCart} = value.detailProduct;
                 // const { nazwa, opis, cena, photo_url } = value.find((item) => item.nazwa === "Pizza");
-                const { nazwa, opis, cena, photo_url , wKoszyku} = value.br();
+                const { nazwa, opis, cena, photo_url } = value.br();
                 // product = this.state.details.find((item) => item.nazwa === nazwa)
             
                 return (
@@ -30,16 +30,16 @@ export default class Details extends Component {
                                     {nazwa}
                                 </h4>
                                 <h5>
-                                    <strong>{wKoszyku} Cena: <span>PLN</span>{cena}</strong>
+                                    <strong> Cena: <span>PLN</span>{cena}</strong>
                                 </h5>
                                 <p>Opis: </p>
                                 <div>{opis}</div>
                                 <div>
                                     <Link to="/products">Powrót</Link>
                                 </div>
-                                {/* <Button size='sm' disabled={inCart} onClick={()=>{value.addToCart(id)}} variant="secondary">
-                                {inCart === true ? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
-                                </Button> */}
+                                <Button size='sm' disabled={false} onClick={()=>{value.DodajDoKoszyka(value.br())}}  variant="secondary">
+                                    {value.CzyWkoszyku(value.br())===true? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
+                                </Button>
                             </div>
                         </div>
                         

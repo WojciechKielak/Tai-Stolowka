@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from "./Components/Nav";
 import Productlist from './Components/Productlist';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import Details from './Components/Details';
 import "semantic-ui-css/semantic.min.css";
 import { useState, useEffect } from 'react';
@@ -38,7 +38,7 @@ function App() {
       setCurrentUser(false);
     });
   }, []);
-
+  const navigate = useNavigate();
   function submitLogin(e) {
     e.preventDefault();
     client.post(
@@ -49,7 +49,9 @@ function App() {
       }
     ).then(function(res) {
       setCurrentUser(true);
+      navigate('/products');
     });
+    
   }
 
   if (currentUser)
@@ -85,9 +87,10 @@ function App() {
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
             </Form.Group>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" >
               Submits
-            </Button>
+            </Button> 
+
           </Form>
         </div>
         </Navbar.Collapse>

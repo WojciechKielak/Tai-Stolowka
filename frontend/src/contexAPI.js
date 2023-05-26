@@ -9,11 +9,37 @@ const client = axios.create({
 });
 class ProductProvider extends Component {
   state = {details : [],
-  detailProduct:  {},}
+  detailProduct:  {},
+  Cart : [],
+}
 
-  ustaw(naz){
-    this.detailProduct = naz;
+ustaw = (produkt) => {
+  this.setState(() => {
+    return {  detailProduct : produkt}
+  });
+}
+
+  CzyWkoszyku = (produkt) => {
+    const { Cart } = this.state;
+    const foundProduct = Cart.find(item => item.produkt === produkt);
+    return !!foundProduct;
   }
+  // DodajDoKoszyka = (produkt) => {
+  //   this.setState(() => {
+  //     return {  Cart : [...this.state.Cart, produkt]}
+  //   });
+  // }
+  DodajDoKoszyka = (produkt) => {
+    const newCartItem = {
+      produkt: produkt,
+      wKoszyku: true,
+      licznik: 1
+    };
+    this.setState(() => {
+      return {  Cart : [...this.state.Cart, newCartItem]}
+    });
+  }
+
   br(){
     return this.detailProduct;
   }
@@ -42,6 +68,10 @@ class ProductProvider extends Component {
           detailProduct: this.state.detailProduct,
           br: this.br,
           ustaw: this.ustaw,
+          CzyWkoszyku: this.CzyWkoszyku,
+          DodajDoKoszyka: this.DodajDoKoszyka,
+  
+
 
         }}
 

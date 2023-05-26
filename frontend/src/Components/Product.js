@@ -22,7 +22,10 @@ export default class Product extends Component {
                     </Card.Body>
                     <Card.Footer>
                         <Row>
-                            <Col>
+                        <Col>
+                                <Button size='sm' disabled={false} onClick={()=>{value.DodajDoKoszyka(this.props.product)}}  variant="secondary">
+                                    {value.CzyWkoszyku(this.props.product)===true? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
+                                </Button>
                             </Col>
                             <Col style={{ display: 'grid', placeItems: 'center' }}>
                                 <big className='text-muted text-centre'>PLN {cena}</big>
