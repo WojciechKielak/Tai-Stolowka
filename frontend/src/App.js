@@ -12,6 +12,7 @@ import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { Link } from 'react-router-dom'; 
+import Cart from './Components/Cart';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -62,6 +63,7 @@ function App() {
       <Routes>
           <Route path="/products" element={<Productlist />} />
           <Route path="/details" element={<Details />} />
+          <Route path="/cart" element={<Cart />} />
       </Routes>
      </div> 
     );
