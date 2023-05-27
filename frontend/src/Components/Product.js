@@ -23,7 +23,7 @@ export default class Product extends Component {
                     <Card.Footer>
                         <Row>
                         <Col>
-                                <Button size='sm' disabled={false} onClick={()=>{value.DodajDoKoszyka(this.props.product)}}  variant="secondary">
+                                <Button size='sm' disabled={value.CzyWkoszyku(this.props.product)} onClick={()=>{value.DodajDoKoszyka(this.props.product)}}  variant="secondary">
                                     {value.CzyWkoszyku(this.props.product)===true? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
                                 </Button>
                             </Col>

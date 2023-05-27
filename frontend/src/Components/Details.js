@@ -37,7 +37,7 @@ export default class Details extends Component {
                                 <div>
                                     <Link to="/products">Powrót</Link>
                                 </div>
-                                <Button size='sm' disabled={false} onClick={()=>{value.DodajDoKoszyka(value.br())}}  variant="secondary">
+                                <Button size='sm' disabled={value.CzyWkoszyku(value.br())} onClick={()=>{value.DodajDoKoszyka(value.br())}}  variant="secondary">
                                     {value.CzyWkoszyku(value.br())===true? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
                                 </Button>
                             </div>
