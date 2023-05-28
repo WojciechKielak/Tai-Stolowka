@@ -8,7 +8,8 @@ from app.settings import LOCAL_PORT
 # Create your views here.
 class MealView(APIView):
     def get(self, request):
-        output = [{"nazwa":output.nazwa, "opis":output.opis, "cena":output.cena, "photo_url":LOCAL_PORT+output.photo.url}
+        output = [{"nazwa":output.nazwa, "opis":output.opis, "cena":output.cena, "photo_url":LOCAL_PORT+output.photo.url,
+                   "wkoszyku":output.wkoszyku, "licznik":output.licznik}
                   for output in Meal.objects.all()]
                   
         return Response(output)

@@ -3,6 +3,6 @@ from .models import Meal
 
 # Register your models here.
 class imageAdmin(admin.ModelAdmin):
-    list_display = ['nazwa','opis','photo']
+    list_display = ['nazwa','opis','cena','photo']
 
 admin.site.register(Meal, imageAdmin)

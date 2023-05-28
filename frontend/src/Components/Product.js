@@ -12,20 +12,17 @@ export default class Product extends Component {
         {/* 5,5 #3 */}
         <ProductCustomer>
             {(value) => (
-                <Card >
-                    <Link to="/details" onClick={()=>{value.ustaw(this.props.product)}}>
-                        <Card.Img variant='top' src={photo_url}  width={250} height={250}></Card.Img>
+                <Card >{/* 
+                    <Link to="/details" onClick={()=>{value.ustaw(this.props.product)}}> */}
+                      {/*   <Card.Img variant='top' src={photo_url}  width={250} height={250}></Card.Img>
 
-                    </Link>
+                    </Link> */}
                     <Card.Body>
                         <Card.Title>{nazwa} </Card.Title>
                     </Card.Body>
                     <Card.Footer>
                         <Row>
-                        <Col>
-                                <Button size='sm' disabled={value.CzyWkoszyku(this.props.product)} onClick={()=>{value.DodajDoKoszyka(this.props.product)}}  variant="secondary">
-                                    {value.CzyWkoszyku(this.props.product)===true? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
-                                </Button>
+                            <Col>
                             </Col>
                             <Col style={{ display: 'grid', placeItems: 'center' }}>
                                 <big className='text-muted text-centre'>PLN {cena}</big>
