@@ -3,9 +3,9 @@ import { ProductCustomer } from '../contexAPI';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import toast, { Toaster } from "react-hot-toast";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-export default class Cart extends Component {
+export default class Pay extends Component {
   render() {
     return (
       <section>
@@ -14,7 +14,7 @@ export default class Cart extends Component {
                 if( value.Cart.length > 0 ){
                         return (
                             <div>
-                                <div> <h1>Koszyk</h1></div>
+                                <div> <h1>Podsumowanie</h1></div>
                                 <div className='row'>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong></strong>
@@ -27,9 +27,6 @@ export default class Cart extends Component {
                                     </div>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong>Ilość</strong>
-                                    </div>
-                                    <div className='col-10 max-auto col-lg-2 text-center'>
-                                        <strong>Usuń produkt</strong>
                                     </div>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong>Cena</strong>
@@ -50,13 +47,8 @@ export default class Cart extends Component {
                                                 <div className='col-10 max-auto col-lg-2'>
                                                     {cartData.produkt.cena}                   
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2'>
-                                                    <Button size="sm" className='qtyminus' onClick={()=>value.odejmowanie(cartData)}>-</Button> 
-                                                    <span style={{ marginLeft: '10px' }}><span style={{ marginRight: '10px' }}>{cartData.licznik}</span></span>
-                                                    <Button size="sm" className='qtyplus' onClick={()=>value.dodawanie(cartData)}>+</Button>
-                                                </div>
-                                                <div className='col-10 max-auto col-lg-2 '>
-                                                    <Button variant='secondary' onClick={()=>{value.usuwanie(cartData)}} size="sm">Usuń</Button>  
+                                                <div className='col-10 max-auto col-lg-2'>            
+                                                    {cartData.licznik}
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2'>
                                                     {cartData.cenaczesciowa}                   
@@ -70,14 +62,9 @@ export default class Cart extends Component {
                                 <hr style={{ borderTopWidth: '5px' }}></hr>
                                 <Container>
                                     <Row>
+                                        <Col><strong  style={{ fontSize: '30px' }}>Suma{": "} {value.sumaKoszyka}</strong></Col>
                                         <Col>
-                                            <strong  style={{ fontSize: '30px' }}>Suma{": "} {value.sumaKoszyka}</strong>
-                                        </Col>
-                                        <Col>
-                                            <Link to="/pay">
-                                            <Button >Podsumowanie</Button>
-                                            </Link>
-                                            {/* <PayPalScriptProvider options={{ "client-id": "Abwme5PEsYp3jeVsDmlzwXCnXr8uPjpqa4MfWwPTyl5PF9-lvwJn14xmS5DVeC2vcQTc6rTYNm-kQDeV", currency: "PLN" }}>
+                                            <PayPalScriptProvider options={{ "client-id": "Abwme5PEsYp3jeVsDmlzwXCnXr8uPjpqa4MfWwPTyl5PF9-lvwJn14xmS5DVeC2vcQTc6rTYNm-kQDeV", currency: "PLN" }}>
                                                 <PayPalButtons
                                                 
                                                     style={{ layout: "horizontal" }}
@@ -93,45 +80,23 @@ export default class Cart extends Component {
                                                         });
                                                     }}
                                                     
-                                                    updateOrderTotal={(data, actions) => {
-                                                        return actions.order.create({
-                                                        purchase_units: [
-                                                            {
-                                                            amount: {
-                                                                value: value.sumaKoszyka.toString(),
-                                                            },
-                                                            },
-                                                        ],
-                                                        });
-                                                    }}
                                                     onCancel={() => toast(
-                                                        "You cancelled the payment. Try again by clicking the PayPal button", 
+                                                        "Anulowałeś płatność, spróbuj ponownie nacisnąć przycisk PayPal", 
                                                         {
                                                           duration: 6000
                                                         }
                                                       )}
                                                       onError={(err) => {
-                                                        toast.error("There was an error processing your payment. If this error please contact support.", { duration: 600 });
+                                                        toast.error("Błąd!", { duration: 600 });
                                                       }}
                                                       onApprove={(data, actions) => {
                                                         return actions.order.capture().then(function (details) {
-                                                          toast.success('Payment completed. Thank you, ' + details.payer.name.given_name);
+                                                          toast.success('Płatność zaakceptwana. Smacznego, ' + details.payer.name.given_name);
 
                                                         });
                                                       }}
-                                                    // onApprove={function(data, actions) {
-                                                    //     return actions.order.capture().then(function(details) {
-                                                    //       // Wywołanie metody obsługi sukcesu płatności
-                                                    //       this.handlePaymentSuccess();
-                                                    //     }.bind(this));
-                                                    //   }.bind(this)}
                                                 />
-                                            </PayPalScriptProvider> */}
-                                        </Col>
-                                        <Col>
-                                            <Link to="/products">
-                                            <Button >Kontynuuj zakupy</Button>
-                                            </Link>
+                                            </PayPalScriptProvider>
                                         </Col>
                                     </Row>
                                 </Container>
@@ -139,7 +104,7 @@ export default class Cart extends Component {
                         )
                     } else {
                         return(
-                            <h1>Koszyk jest pusty</h1>
+                            <h3>Brak zamówień</h3>
                             
                         )
                     }

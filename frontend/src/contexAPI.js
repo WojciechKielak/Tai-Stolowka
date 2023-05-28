@@ -47,6 +47,9 @@ ustaw = (produkt) => {
   br(){
     return this.detailProduct;
   }
+  ilosc(){
+    return this.Cart.length;
+  }
   componentDidMount(){
       let data;
       // axios.get('http://127.0.0.1:8000/meals')
@@ -121,10 +124,20 @@ ustaw = (produkt) => {
       this.odswiezSumaKoszyka();
     });
   };
+  // odswiezSumaKoszyka = () => {
+  //   let subTotal = 0;
+  //   this.state.Cart.map(item => (subTotal += item.cenaczesciowa));
+  //   const total = subTotal;
+  //   this.setState(() => {
+  //     return {
+  //       sumaKoszyka : subTotal
+  //     };
+  //   });
+  // };
+  
   odswiezSumaKoszyka = () => {
     let subTotal = 0;
     this.state.Cart.map(item => (subTotal += item.cenaczesciowa));
-    const total = subTotal;
     this.setState(() => {
       return {
         sumaKoszyka : subTotal
@@ -146,6 +159,7 @@ ustaw = (produkt) => {
           usuwanie: this.usuwanie,
           dodawanie: this.dodawanie,
           odejmowanie: this.odejmowanie,
+          ilosc: this.ilosc,
   
 
 
