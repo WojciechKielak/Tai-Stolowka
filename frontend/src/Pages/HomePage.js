@@ -8,6 +8,7 @@ const HomePage = () => {
     <div className="App">
       <Nav/>
       <h1>HOME PAGE</h1>
+      
      </div> 
     );
 };

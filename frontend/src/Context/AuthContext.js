@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   
   let [user, setUser] = useState(()=>localStorage.getItem('tokens') ? jwt_decode(localStorage.getItem('tokens')) : null);
   let [tokens, setTokens] = useState(() => localStorage.getItem('tokens') ? JSON.parse(localStorage.getItem('tokens')) : null);
-
+  let [loading, setLoading] = useState(true)
   const navigate = useNavigate()
 
   let loginUser = async (e) => {
@@ -40,13 +40,14 @@ export const AuthProvider = ({ children }) => {
     navigate('/login')
   }
 
- /*  let updateToken = async ()=>{
+    let updateToken = async ()=>{
+    console.log('Update token called!')
     let response = await fetch('http://localhost:8000/api/token/refresh/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ 'refresh': tokens.refresh})
+      body: JSON.stringify({ 'refresh': tokens?.refresh})
     });
     let data = await response.json();
 
@@ -58,21 +59,35 @@ export const AuthProvider = ({ children }) => {
       alert("Cos poszlo nie tak z tokenem")
       logout()
     }
-  } */
+    if(loading){
+      setLoading(false)
+    }
+  } 
 
   let contextData = {
     user:user,
     loginUser: loginUser,
     logout:logout
   };
-  /* 
-    useEffect(() => {
+   
+  useEffect(() => {
+    if(loading){
+      updateToken()
+    }
+    let nineminutes = 1000 * 60 * 9
+    let interval = setInterval(()=>{
+      if(tokens){
+        updateToken()
+      }
+    }, nineminutes
+    )
+    return ()=> clearInterval(interval)
 
-    }, [tokens, loading])
- */
+  }, [tokens, loading])
+ 
   return (
     <AuthContext.Provider value={contextData}>
-      {children}
+      {loading ? null : children}
     </AuthContext.Provider>
   );
 };
