@@ -1,6 +1,5 @@
-import React, {Component, useContext} from 'react';
+import React, {Component} from 'react';
 import axios from "axios";
-import AuthContext from './Context/AuthContext';
 //import { dataProducts, prodInDetails } from './appData';
 // import { dataProducts} from './appData';
 const ProductContext = React.createContext();
@@ -15,35 +14,39 @@ class ProductProvider extends Component {
   br(){
     return this.detailProduct;
   }
+   
   componentDidMount() {
-    const token = localStorage.getItem('tokens');
-    const parsedData = JSON.parse(token);
-    const accessToken = parsedData.access;
-    axios.get('http://localhost:8000/meals/', {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
-      .then(response => {
-        const data = response.data;
-        //console.log(data);
-        this.setState({
-          details:data
-      });
+    const storedData = localStorage.getItem('tokens');
+    const parsedData = JSON.parse(storedData);
+    
+    if (parsedData && parsedData.access) {
+      axios.get('http://localhost:8000/meals', {
+        headers: {
+          Authorization: `Bearer ${parsedData.access}`,
+        },
       })
-      .catch(error => {
-        // Handle the error
-        this.setState({
-          details:accessToken
-      });
-        console.error(error);
-      });
+        .then(res => {
+          const data = res.data;
+          this.setState({
+            details: data,
+          });
+        })
+        .catch(err => {
+          // Handle error
+          console.error(err);
+        });
+    } else {
+      // Handle the case when the access token is null or not available
+      console.error('Access token is missing or invalid.');
+      // Perform appropriate action, e.g., show an error message or redirect to login page
+    }
   }
-
+  
+ 
 
   render() {
     return (
-      <ProductContext.Provider
+     <ProductContext.Provider
       value={{
         details: this.state.details,
         detailProduct: this.state.detailProduct,
@@ -54,7 +57,7 @@ class ProductProvider extends Component {
 
       >
         {this.props.children}
-      </ProductContext.Provider>
+      </ProductContext.Provider> 
       
     );
   }
