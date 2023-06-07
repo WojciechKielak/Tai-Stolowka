@@ -19,7 +19,7 @@ class ProductProvider extends Component {
     const storedData = localStorage.getItem('tokens');
     const parsedData = JSON.parse(storedData);
     
-    if (parsedData && parsedData.access) {
+    if (parsedData) {
       axios.get('http://localhost:8000/meals', {
         headers: {
           Authorization: `Bearer ${parsedData.access}`,
@@ -30,6 +30,7 @@ class ProductProvider extends Component {
           this.setState({
             details: data,
           });
+          console.log("AAAAAAAAAAAA")
         })
         .catch(err => {
           // Handle error
