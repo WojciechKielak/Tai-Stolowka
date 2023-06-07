@@ -11,24 +11,53 @@ export default class Nab extends Component{
         const {logout} = this.context;
         return (
             <div>
-                <Navbar collapseOnSelect expand = "lg" bg="dark" variant="dark">
-                    <Navbar.Brand href="#">Stołówka Szkolna</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
-                    <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="mr-auto">
-                        <Link to='/'>Produkty</Link>
-                        </Nav>
-                        <Nav >
-                        <Link style={{color:"mediumspringgreen"}} eventKey={2} to="/cart" className="justify-content-end">
-                                    Koszyk()
-                        </Link>
-                        </Nav>
-                        <Nav >
-                        <p onClick={logout} style={{ color: "red" }}>Wyloguj</p>
-                        </Nav>
-                    </Navbar.Collapse>  
-                </Navbar>
+                <ProductCustomer>
+                    {(value)=>{
+                        return( 
+                            <Navbar collapseOnSelect expand = "lg" bg="dark" variant="dark">
+                            <Navbar.Brand href="#">Stołówka Szkolna</Navbar.Brand>
+                            <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+                            <Navbar.Collapse id="responsive-navbar-nav">
+                                <Nav className="mr-auto">
+                                <Link to='/products'>Produkty</Link>
+                                </Nav>
+                                
+                            </Navbar.Collapse> 
+                            
+                            <Nav > 
+                                <Link style={{color:"mediumspringgreen"}} eventKey={2} to="/cart" className="justify-content-end">
+                                            <span style={{ display: 'inline-block', marginRight: '30px'  }}>Koszyk ( {value.ilosc()} ) </span>
+                                </Link>
+                            </Nav> 
+                            <Nav >
+                         <p onClick={logout} style={{ color: "red",marginRight: '15px' }}>Wyloguj</p>
+                         </Nav>
+                        </Navbar>
+                        )
+
+                    }}
+                </ProductCustomer>
+
             </div>
+            // <div>
+            //     <Navbar collapseOnSelect expand = "lg" bg="dark" variant="dark">
+            //         <Navbar.Brand href="#">Stołówka Szkolna</Navbar.Brand>
+            //         <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
+            //         <Navbar.Collapse id="responsive-navbar-nav">
+            //             <Nav className="mr-auto">
+            //             <Link to='/'>Produkty</Link>
+            //             </Nav>
+            //             <Nav >
+            //             <Link style={{color:"mediumspringgreen"}} eventKey={2} to="/cart" className="justify-content-end">
+            //                         Koszyk()
+            //             </Link>
+            //             </Nav>
+            //             <Nav >
+            //             <p onClick={logout} style={{ color: "red" }}>Wyloguj</p>
+            //             </Nav>
+            //         </Navbar.Collapse>  
+            //     </Navbar>
+            // </div>
         )
     }
 }

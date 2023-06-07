@@ -6,14 +6,46 @@ const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
   state = {details : [],
-  detailProduct:  {},
+    detailProduct:  {},
+    Cart : [],
+    sumaKoszyka: 0,
 }
-  ustaw(naz){
-    this.detailProduct = naz;
+ustaw = (produkt) => {
+  this.setState(() => {
+    return {  detailProduct : produkt}
+  });
+}
+zm = () => {
+  this.setState(() => {
+    return {  
+    detailProduct:  {},
+    Cart : [],
+    sumaKoszyka: 0,}
+  });
+}
+  CzyWkoszyku = (produkt) => {
+    const { Cart } = this.state;
+    const foundProduct = Cart.find(item => item.produkt === produkt);
+    return !!foundProduct;
   }
-  br(){
-    return this.detailProduct;
-  }
+  DodajDoKoszyka = (produkt) => {
+    const newCartItem = {
+      produkt: produkt,
+      wKoszyku: true,
+      licznik: 1,
+      cenaczesciowa: produkt.cena,
+    };
+    this.setState(() => {
+      return {  Cart : [...this.state.Cart, newCartItem]}
+    }, () => {
+      this.odswiezSumaKoszyka();
+    })};
+br(){
+  return this.detailProduct;
+}
+ilosc(){
+  return this.Cart.length;
+}
    
   componentDidMount() {
     const storedData = localStorage.getItem('tokens');
@@ -42,17 +74,93 @@ class ProductProvider extends Component {
       // Perform appropriate action, e.g., show an error message or redirect to login page
     }
   }
+
+  dodawanie = (cartData) => {
+    let tempCart = [...this.state.Cart];
+    const selectedProduct = tempCart.find(item => item === cartData);
+    const index = tempCart.indexOf(selectedProduct);
+    const produkt = tempCart[index];
+
+    produkt.licznik = produkt.licznik + 1;
+    produkt.cenaczesciowa = produkt.licznik * produkt.produkt.cena;
+
+    // this.setState(() => {
+    //   return { Cart : [...tempCart] };
+    // });
+    this.setState(() => {
+      return { Cart : [...tempCart] };
+    }, () => {
+      this.odswiezSumaKoszyka();
+    });
+  };
+
+  odejmowanie = (cartData) => {
+    let tempCart = [...this.state.Cart];
+    const selectedProduct = tempCart.find(item => item === cartData);
+    const index = tempCart.indexOf(selectedProduct);
+    const produkt = tempCart[index];
+
+    if(produkt.licznik > 1)
+    {
+      produkt.licznik = produkt.licznik - 1;
+      produkt.cenaczesciowa = produkt.licznik * produkt.produkt.cena;
   
- 
+      // this.setState(() => {
+      //   return { Cart : [...tempCart] };
+      // });
+      this.setState(() => {
+        return { Cart : [...tempCart] };
+      }, () => {
+        this.odswiezSumaKoszyka();
+      });
+    }
+    
+  };
+  usuwanie = (cartData) => {
+    let tempCart = [...this.state.Cart];
+    tempCart = tempCart.filter(item => item !== cartData);
+
+    // this.setState(() => {
+    //   return {
+    //     Cart: [...tempCart],
+    //   };
+    // });
+    this.setState(() => {
+      return {
+        Cart: [...tempCart],
+      };
+    }, () => {
+      this.odswiezSumaKoszyka();
+    });
+  };
+  odswiezSumaKoszyka = () => {
+    let subTotal = 0;
+    this.state.Cart.map(item => (subTotal += item.cenaczesciowa));
+    this.setState(() => {
+      return {
+        sumaKoszyka : subTotal
+      };
+    });
+  };
 
   render() {
     return (
      <ProductContext.Provider
       value={{
         details: this.state.details,
-        detailProduct: this.state.detailProduct,
-        br: this.br,
-        ustaw: this.ustaw,
+          detailProduct: this.state.detailProduct,
+          sumaKoszyka: this.state.sumaKoszyka,
+          Cart: this.state.Cart,
+          platnosc: this.state.platnosc,
+          br: this.br,
+          ustaw: this.ustaw,
+          CzyWkoszyku: this.CzyWkoszyku,
+          DodajDoKoszyka: this.DodajDoKoszyka,
+          usuwanie: this.usuwanie,
+          dodawanie: this.dodawanie,
+          odejmowanie: this.odejmowanie,
+          ilosc: this.ilosc,
+          zm: this.zm,
 
       }}
 
