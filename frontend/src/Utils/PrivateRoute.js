@@ -4,7 +4,12 @@ import AuthContext from '../Context/AuthContext';
 
 const PrivateRoute = () => {
     let {user} = useContext(AuthContext)
-    return user ? <Outlet /> : <Navigate to="/login" />;
+    console.log(user.role); // Access the user's role
+    if (user.role === 1) {
+        return <Outlet />;
+    } else {
+        return <Navigate to="/login" />;
+    }
 }
 
 export default PrivateRoute;

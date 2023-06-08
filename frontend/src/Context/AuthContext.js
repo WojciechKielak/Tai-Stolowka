@@ -20,7 +20,11 @@ export const AuthProvider = ({ children }) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ 'username': e.target.username.value, 'password': e.target.password.value })
+      body: JSON.stringify({ 
+        'username': e.target.username.value, 
+        'password': e.target.password.value, 
+        'role': e.target.role
+      })
     });
     let data = await response.json();
     if(response.status === 200){
@@ -56,7 +60,7 @@ export const AuthProvider = ({ children }) => {
       setUser(jwt_decode(data.access))
       localStorage.setItem('tokens', JSON.stringify(data));
     }else{
-      alert("Cos poszlo nie tak z tokenem")
+      //alert("Cos poszlo nie tak z tokenem")
       logout()
     }
     if(loading){

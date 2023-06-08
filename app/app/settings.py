@@ -143,7 +143,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'app.wsgi.application'
 
 #nie domyslne modele uzytkownika
-#AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'account.User'
 """ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend'
 ) """
