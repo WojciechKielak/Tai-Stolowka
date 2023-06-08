@@ -13,6 +13,7 @@ import Cart from './Components/Cart';
 import Mmeals from './Components/Mmeals';
 import NavAdmin from './Components/NavAdmin';
 import AddProduct from './Components/AddProduct';
+import HistoryList from './Components/HistoryList';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/details" element={<div><Nav /><Details /></div>} />
             <Route path="/cart" element={<div><Nav /><Cart /></div>} />
             <Route path="/pay" element={<div><Nav /><Pay /></div>} />
+            <Route path="/history" element={<div><Nav /><HistoryList /></div>} />
           </Route>
 
           <Route path="/admin" element={<PrivateRouteAdmin  />} >

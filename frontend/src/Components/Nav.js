@@ -23,7 +23,11 @@ export default class Nab extends Component{
                                 </Nav>
                                 
                             </Navbar.Collapse> 
-                            
+                            <Nav > 
+                                <Link style={{color:"mediumspringgreen"}} eventKey={2} to="/history" className="justify-content-end">
+                                            <span style={{ display: 'inline-block', marginRight: '30px'  }}>Historia </span>
+                                </Link>
+                            </Nav> 
                             <Nav > 
                                 <Link style={{color:"mediumspringgreen"}} eventKey={2} to="/cart" className="justify-content-end">
                                             <span style={{ display: 'inline-block', marginRight: '30px'  }}>Koszyk ( {value.ilosc()} ) </span>

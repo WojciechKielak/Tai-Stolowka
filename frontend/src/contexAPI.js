@@ -116,6 +116,23 @@ ilosc(){
     }
     
   };
+
+  usuwanieZbazy= (produkt) => {
+    //USUNIENIE PRODUKTU Z BAZY
+
+
+    // let tempCart = [...this.state.Cart];
+    // tempCart = tempCart.filter(item => item !== cartData);
+    // this.setState(() => {
+    //   return {
+    //     Cart: [...tempCart],
+    //   };
+    // }, () => {
+    //   this.odswiezSumaKoszyka();
+    // });
+  };
+
+
   usuwanie = (cartData) => {
     let tempCart = [...this.state.Cart];
     tempCart = tempCart.filter(item => item !== cartData);
@@ -161,6 +178,7 @@ ilosc(){
           odejmowanie: this.odejmowanie,
           ilosc: this.ilosc,
           zm: this.zm,
+          usuwanieZbazy: this.usuwanieZbazy,
 
       }}
 
