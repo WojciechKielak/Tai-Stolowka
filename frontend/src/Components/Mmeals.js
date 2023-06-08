@@ -16,7 +16,7 @@ export default class Mmeals extends Component {
                                 <div> 
                                     <h1>Spis Dań</h1>
                                     <span style={{ display: 'inline-block', float: 'right', marginRight:"30px"}}>
-                                    <Link to="/addproduct">
+                                    <Link to="/admin/addproduct">
                                         <Button>Dodaj nowe danie</Button>
                                     </Link>
                                       </span>

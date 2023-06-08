@@ -12,6 +12,7 @@ import Pay from './Components/Pay';
 import Cart from './Components/Cart';
 import Mmeals from './Components/Mmeals';
 import NavAdmin from './Components/NavAdmin';
+import AddProduct from './Components/AddProduct';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/admin" element={<PrivateRouteAdmin  />} >
             <Route index element={<div><NavAdmin /><Mmeals /></div>} />
             <Route path="/admin/details" element={<div><NavAdmin /><Details /></div>} />
+            <Route path="/admin/addproduct" element={<div><NavAdmin /><AddProduct /></div>} />
           </Route>
 
           <Route path="/login" element={<LoginPage />} />
