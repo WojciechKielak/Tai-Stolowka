@@ -11,59 +11,39 @@ const AddProduct = () => {
   const [photo, setPhoto] = useState(null);
 
   const AddNewProduct = async () => {
+   
     const formField = new FormData();
-    // let formField = new FormData();
     formField.append('nazwa', nazwa);
     formField.append('opis', opis);
     formField.append('cena', cena);
- console.log(nazwa)
- console.log("FFFFFFFFFFF")
-    if (photo !== null) {
-      formField.append('photo', photo);
-    }
-
+    formField.append('photo', photo, photo.name);
+    formField.append('wkoszyku', 1);
+    formField.append('licznik', 1);
+    console.log(photo)
     const storedData = localStorage.getItem('tokens');
     const parsedData = JSON.parse(storedData);
     if (parsedData) {
-        axios.put('http://localhost:8000/meals',formField, {
-          headers: {
-            Authorization: `Bearer ${parsedData.access}`,
-          },
-        })
-        //   .then(res => {
-        //     const data = res.data;
-        //     this.setState({
-        //       details: data,
-        //     });
-        //     console.log("AAAAAAAAAAAA")
-        //   })
-          .catch(err => {
-            // Handle error
-            console.error(err);
-          });
-      } else {
-        // Handle the case when the access token is null or not available
-        console.error('Access token is missing or invalid.');
-        // Perform appropriate action, e.g., show an error message or redirect to login page
+      const requestOptions = {
+        method: 'POST',
+        //mode: 'no-cors',
+        headers: {
+          //'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${parsedData.access}`,
+        },
+        body: formField,//JSON.stringify(newMealData)
+      };
+      try {
+        const response = await fetch('http://localhost:8000/meals/', requestOptions);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
       }
-    // if (parsedData) {
-    //   try {
-    //     const response = await axios.put('http://localhost:8000/meals', formField, {
-    //       headers: {
-    //         Authorization: `Bearer ${parsedData.access}`,
-    //       },
-    //     });
-    //     const data = response.data;
-    //     console.log(data);
-    //     navigate('/');
-    //   } catch (error) {
-    //     // console.error(error);
-    //     console.error(error.response.data);
-    //   }
-    // } else {
-    //   console.error('Access token is missing or invalid.');
-    //   // Perform appropriate action, e.g., show an error message or redirect to login page
-    // }
+      
+    }
   };
 
   return (

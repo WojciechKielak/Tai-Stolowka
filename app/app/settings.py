@@ -35,7 +35,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 ] """
 """ CORS_ALLOW_CREDENTIALS = True
  """
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'mediafiles')
 
 MEDIA_URL = '/media/'
 
@@ -119,7 +119,9 @@ MIDDLEWARE = [
 """ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':[]} """
 # 'rest_framework.permission.AllowAny'
-""" CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
+STATIC_URL = '/static/'
+"""
 CORS_ALLOW_CREDENTIALS = True """
 
 ROOT_URLCONF = 'app.urls'
