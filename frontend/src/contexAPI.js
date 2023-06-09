@@ -62,7 +62,7 @@ ilosc(){
           this.setState({
             details: data,
           });
-          console.log("AAAAAAAAAAAA")
+          console.log(this.state.details)
         })
         .catch(err => {
           // Handle error
@@ -117,20 +117,37 @@ ilosc(){
     
   };
 
-  usuwanieZbazy= (produkt) => {
-    //USUNIENIE PRODUKTU Z BAZY
-
-
-    // let tempCart = [...this.state.Cart];
-    // tempCart = tempCart.filter(item => item !== cartData);
-    // this.setState(() => {
-    //   return {
-    //     Cart: [...tempCart],
-    //   };
-    // }, () => {
-    //   this.odswiezSumaKoszyka();
-    // });
+usuwanieZbazy = async (product) => {
+    const storedData = localStorage.getItem('tokens');
+    const parsedData = JSON.parse(storedData);
+    console.log(product.pk);
+    if (parsedData) {
+      const requestOptions = {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${parsedData.access}`,
+        },
+        //body: JSON.stringify({ "pk": produkt.pk })
+      };
+      //let pk = produkt.pk;
+      try {
+        console.log(`http://localhost:8000/meals/${product.pk}/`)
+        const response = await fetch(`http://localhost:8000/meals/${product.pk}/`, requestOptions);
+        if (response.ok) {
+          // Successful deletion
+          console.log('Product deleted successfully');
+          window.location.reload();
+        } else {
+          // Error handling
+          console.error('Error deleting product:', response.status, response.statusText);
+        }
+      } catch (error) {
+        console.error('Error deleting product:', error);
+      }
+    }
   };
+  
 
 
   usuwanie = (cartData) => {

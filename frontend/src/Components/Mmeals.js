@@ -6,6 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, withRouter } from "react-router-dom";
 
 export default class Mmeals extends Component {
+
   render() {
     return (
       <section>
@@ -51,7 +52,7 @@ export default class Mmeals extends Component {
                                                     {produkt.cena}                   
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2 '>
-                                                    <Button variant='secondary' onClick={()=>{value.usuwanie(produkt)}} size="sm">Usuń</Button>  
+                                                    <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt)}} size="sm">Usuń</Button>  
                                                 </div>
                                             </div>
                                         </div>

@@ -28,5 +28,6 @@ urlpatterns = [
     #path('',include('django.contrib.auth.urls'))
     path('api/', include('account.urls')),
     #path('',include('account.urls'),),
-    path('meals/', MealView.as_view(), name='Meals')
+    path('meals/', MealView.as_view(), name='Meals'),
+     path('meals/<int:pk>/', MealView.as_view(), name='Meal-delete')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # New

@@ -4,4 +4,4 @@ from .models import *
 class MealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Meal
-        fields = ('nazwa','opis','cena','photo', 'wkoszyku', 'licznik')
+        fields = '__all__'#('pk','nazwa','opis','cena','photo', 'wkoszyku', 'licznik')
