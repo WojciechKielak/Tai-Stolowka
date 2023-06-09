@@ -64,6 +64,7 @@ export default class Pay extends Component {
                                 <Row>
                                     <Col><strong  style={{ fontSize: '30px' }}>Suma{": "} {value.sumaKoszyka}</strong></Col>
                                     <Col>
+                                    
                                         <PayPalScriptProvider options={{ "client-id": "Abwme5PEsYp3jeVsDmlzwXCnXr8uPjpqa4MfWwPTyl5PF9-lvwJn14xmS5DVeC2vcQTc6rTYNm-kQDeV", currency: "PLN" }}>
                                             <PayPalButtons
                                             
@@ -99,6 +100,9 @@ export default class Pay extends Component {
                                             />
                                         </PayPalScriptProvider>
                                     </Col>
+                                    <Button onClick={value.zm}>
+                                        Zapłać
+                                    </Button>
                                 </Row>
                             </Container>
                         </div>

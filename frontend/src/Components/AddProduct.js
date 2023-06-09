@@ -51,7 +51,7 @@ const AddProduct = () => {
 
       } catch (error) {
         console.error(error);
-        toast.error('Nie zapisano do bazy', { duration: 2000 });
+        localStorage.setItem('Error', 'Błąd podczas dodawania produktu');
         window.location.href = '/admin';
       }
       
