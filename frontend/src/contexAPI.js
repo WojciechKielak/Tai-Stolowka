@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 //import { dataProducts, prodInDetails } from './appData';
 // import { dataProducts} from './appData';
 const ProductContext = React.createContext();
@@ -9,6 +10,7 @@ class ProductProvider extends Component {
     detailProduct:  {},
     Cart : [],
     sumaKoszyka: 0,
+
 }
 ustaw = (produkt) => {
   this.setState(() => {
@@ -135,15 +137,18 @@ usuwanieZbazy = async (product) => {
         console.log(`http://localhost:8000/meals/${product.pk}/`)
         const response = await fetch(`http://localhost:8000/meals/${product.pk}/`, requestOptions);
         if (response.ok) {
+          localStorage.setItem('successMessage', 'Produkt usunięto z bazy');
           // Successful deletion
           console.log('Product deleted successfully');
           window.location.reload();
         } else {
           // Error handling
           console.error('Error deleting product:', response.status, response.statusText);
+          localStorage.setItem('Error', 'Błąd podczas usuwania produktu');
         }
       } catch (error) {
         console.error('Error deleting product:', error);
+        localStorage.setItem('Error', 'Błąd podczas usuwania produktu');
       }
     }
   };
@@ -201,6 +206,7 @@ usuwanieZbazy = async (product) => {
 
       >
         {this.props.children}
+        <Toaster/>
       </ProductContext.Provider> 
       
     );

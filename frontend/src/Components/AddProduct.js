@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { useHistory, useNavigate  } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import axios from 'axios';
+import toast, { Toaster } from "react-hot-toast";
 
 const AddProduct = () => {
   const navigate = useNavigate();
-
   const [nazwa, setNazwa] = useState(null);
   const [opis, setOpis] = useState(null);
   const [cena, setCena] = useState(null);
@@ -39,9 +39,20 @@ const AddProduct = () => {
         }
         const data = await response.json();
         console.log(data);
+        // toast.success('Produkt dodany do bazy', { duration: 2000 }).then(() => {
+        //   window.location.href = '/admin';
+        // });
+        // const successMessage = 'Produkt dodany do bazy';
+        // navigate('/admin', { state: { success: successMessage } });
+        localStorage.setItem('successMessage', 'Produkt dodany do bazy');
+        // toast.success('Zapisano do bazy', { duration: 2000 });
         window.location.href = '/admin';
+        // toast.success('Produkt ddany do bazy ', { duration: 100000 });
+
       } catch (error) {
         console.error(error);
+        toast.error('Nie zapisano do bazy', { duration: 2000 });
+        window.location.href = '/admin';
       }
       
     }
@@ -93,6 +104,7 @@ const AddProduct = () => {
           <button className="btn btn-primary btn-block" onClick={AddNewProduct}>Dodaj Danie</button>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 };

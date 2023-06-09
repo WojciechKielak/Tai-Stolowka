@@ -6,15 +6,31 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, withRouter } from "react-router-dom";
 
 export default class Mmeals extends Component {
-
+    componentDidMount = () => {
+        console.log('componentDidMount');
+        // toast.success("SSSSSSSSSSSSSSSSSSSSSSSS", { duration: 4000 });
+        const successMessage = localStorage.getItem('successMessage');
+        const errorMessage = localStorage.getItem('Error');
+        if (successMessage) {
+          toast.success(successMessage, { duration: 4000 });
+          localStorage.removeItem('successMessage');
+        }
+        if (errorMessage) {
+            toast.success(errorMessage, { duration: 4000 });
+            localStorage.removeItem('Error');
+          }
+      }
   render() {
+    
     return (
       <section>
         <ProductCustomer>
             { value => {
+
                         return (
                             <div>
                                 <div> 
+                                    
                                     <h1>Spis Dań</h1>
                                     <span style={{ display: 'inline-block', float: 'right', marginRight:"30px"}}>
                                     <Link to="/admin/addproduct">
@@ -52,7 +68,8 @@ export default class Mmeals extends Component {
                                                     {produkt.cena}                   
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2 '>
-                                                    <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt)}} size="sm">Usuń</Button>  
+                                                    {/* <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt).then(toast.success('Produkt usunięto z bazy ', { duration: 8000 }))}} size="sm">Usuń</Button>  */}
+                                                    <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt)}} size="sm">Usuń</Button> 
                                                 </div>
                                             </div>
                                         </div>
