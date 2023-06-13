@@ -14,42 +14,36 @@ const AddUser = () => {
    
     const formField = new FormData();
     formField.append('email', email);
-    formField.append('password1', password1);
-    formField.append('password2', password2);
+    formField.append('password', password1);
+    //formField.append('password2', password2);
     formField.append('role', role);
 
     if(password1 === password2)
-    // if(email.includes("@"))
     {
-    //   const storedData = localStorage.getItem('tokens');
-    // const parsedData = JSON.parse(storedData);
-    // if (parsedData) {
-    //   const requestOptions = {
-    //     method: 'POST',
-    //     //mode: 'no-cors',
-    //     headers: {
-    //       //'Content-Type': 'multipart/form-data',
-    //       Authorization: `Bearer ${parsedData.access}`,
-    //     },
-    //     body: formField,//JSON.stringify(newMealData)
-    //   };
-    //   try {
-    //     const response = await fetch('http://localhost:8000/meals/', requestOptions);
-    //     if (!response.ok) {
-    //       throw new Error(response.statusText);
-    //     }
-    //     const data = await response.json();
-    //     console.log(data);
-    //     localStorage.setItem('successMessage', 'Produkt dodany do bazy');
-    //     window.location.href = '/admin';
+      const storedData = localStorage.getItem('tokens');
+      const parsedData = JSON.parse(storedData);
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${parsedData.access}`,
+        },
+        body: formField,
+      };
+      try {
+        const response = await fetch('http://localhost:8000/api/create-user/', requestOptions);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        console.log(formField);
+        localStorage.setItem('successMessage', 'Produkt dodany do bazy');
+        window.location.href = '/admin';
 
-    //   } catch (error) {
-    //     console.error(error);
-    //     localStorage.setItem('Error', 'Błąd podczas dodawania produktu');
-    //     window.location.href = '/admin';
-    //   }
-      
-    // }
+      } catch (error) {
+        console.error(error);
+        localStorage.setItem('Error', 'Błąd podczas dodawania produktu');
+        window.location.href = '/admin';
+      }
+    
     toast.success("Sukces", { duration: 4000 });
     }else{
       toast.error("Błędne hasło", { duration: 4000 });
@@ -106,9 +100,9 @@ const AddUser = () => {
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
-            <option value="customer">Uczeń</option>
-            <option value="employee">pracownik</option>
-            <option value="admin">Administrator</option>
+            <option value={1}>Uczeń</option>
+            <option value={2}>pracownik</option>
+            <option value={3}>Administrator</option>
             </select>
           </div>
 
