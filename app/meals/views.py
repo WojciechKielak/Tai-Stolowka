@@ -49,3 +49,16 @@ class MealView(APIView):
             return Response({"message": "Meal deleted successfully"})
         except Meal.DoesNotExist:
             return Response({"message": "Meal not found"}, status=404)
+        
+    def put(self, request, pk):
+        try:
+            meal = Meal.objects.get(pk=pk)
+        except Meal.DoesNotExist:
+            return Response({'message': 'Meal not found.'}, status=404)
+
+        serializer = MealSerializer(meal, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Meal updated successfully.'})
+        else:
+            return Response(serializer.errors, status=400)

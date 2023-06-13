@@ -1,0 +1,28 @@
+UpdateMeal= () => {
+    const updtMealValues = async (mealId, newData) => {
+        const storedData = localStorage.getItem('tokens');
+        const parsedData = JSON.parse(storedData);
+        const requestOptions = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${parsedData.access}`,
+          },
+          body: JSON.stringify(newData),
+        };
+      
+        try {
+          const response = await fetch(`http://localhost:8000/api/meals/${mealId}/`, requestOptions);
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          const updatedMeal = await response.json();
+          console.log(updatedMeal);
+          return updatedMeal;
+        } catch (error) {
+          console.error(error);
+          return null;
+        }
+      };
+}
+
