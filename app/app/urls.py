@@ -18,16 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from meals.views import *
+from history.views import HistoryCreateView
 from django.conf import settings
 from django.conf.urls.static import static 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('api-auth/', include('rest_framework.urls')),
-    #path('',include('django.contrib.auth.urls'))
     path('api/', include('account.urls')),
-    #path('',include('account.urls'),),
     path('meals/', MealView.as_view(), name='Meals'),
-     path('meals/<int:pk>/', MealView.as_view(), name='Meal-delete')
+    path('history/', HistoryCreateView.as_view(), name='History'),
+    path('history/<int:user_id>/', HistoryCreateView.as_view(), name='History'),
+    path('meals/<int:pk>/', MealView.as_view(), name='Meal-delete-get')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # New

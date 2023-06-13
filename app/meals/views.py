@@ -14,11 +14,21 @@ from django.http import JsonResponse
 class MealView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
-        output = [{'pk':output.pk,"nazwa":output.nazwa, "opis":output.opis, "cena":output.cena, "photo_url":LOCAL_PORT+output.photo.url,
-                   "wkoszyku":output.wkoszyku, "licznik":output.licznik}
-                  for output in Meal.objects.all()]
-                  
+    def get(self, request, pk=None):
+        if pk is not None:
+            meal = get_object_or_404(Meal, pk=pk)
+            output = {
+                'pk': meal.pk,
+                'nazwa': meal.nazwa,
+                'opis': meal.opis,
+                'cena': meal.cena,
+                'photo_url': LOCAL_PORT + meal.photo.url,
+                'wkoszyku': meal.wkoszyku,
+                'licznik': meal.licznik
+            }
+            return Response(output)
+        
+        output = [{'pk': meal.pk, 'nazwa': meal.nazwa, 'opis': meal.opis, 'cena': meal.cena, 'photo_url': LOCAL_PORT + meal.photo.url, 'wkoszyku': meal.wkoszyku, 'licznik': meal.licznik} for meal in Meal.objects.all()]
         return Response(output)
     
     def post(self, request):

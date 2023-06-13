@@ -17,14 +17,127 @@ ustaw = (produkt) => {
     return {  detailProduct : produkt}
   });
 }
+getMealById = (pk) => {
+  const storedData = localStorage.getItem('tokens');
+  const parsedData = JSON.parse(storedData);
+
+  const storedUserId = localStorage.getItem('pk');
+  const parsedUserId = JSON.parse(storedUserId);
+  const getSingleProduct = async () => {
+    if (parsedData) {
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${parsedData.access}`,
+        },
+      };
+      try {
+        const response = await fetch(`http://localhost:8000/meals/${pk}`, requestOptions);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const product = await response.json();
+        console.log(product);
+      } catch (error) {
+        console.error(error);
+      }
+      
+    }
+  };
+  getSingleProduct(); 
+  //return product
+};
+
 zm = () => {
-  this.setState(() => {
-    return {  
-    detailProduct:  {},
-    Cart : [],
-    sumaKoszyka: 0,}
+  const { Cart } = this.state;
+  const { sumaKoszyka } = this.state;
+
+  const storedData = localStorage.getItem('tokens');
+  const parsedData = JSON.parse(storedData);
+
+  const storedUserId = localStorage.getItem('pk');
+  const parsedUserId = JSON.parse(storedUserId);
+  console.log(sumaKoszyka);
+  const data = {
+    "user": parsedUserId,
+    "total_amt": sumaKoszyka,
+    "cart_items": []
+  }
+  
+  Cart.forEach(item => {
+    let dictTemp = {
+      "item": item.produkt.pk,
+      "qty": item.licznik
+    };
+    data.cart_items.push(dictTemp);
   });
-}
+  console.log(data);
+  const AddHistory = async () => {
+    if (parsedData) {
+      const requestOptions = {
+        method: 'POST',
+        //mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${parsedData.access}`,
+        },
+        body: JSON.stringify(data),
+      };
+      try {
+        const response = await fetch('http://localhost:8000/history/', requestOptions);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+      
+    }
+  };
+  AddHistory(); 
+  this.setState(() => {
+    return {
+      detailProduct: {},
+      Cart: [],
+      sumaKoszyka: 0,
+    };
+  });
+};
+
+HistoryGetter = () => {
+  const storedData = localStorage.getItem('tokens');
+  const parsedData = JSON.parse(storedData);
+
+  const storedUserId = localStorage.getItem('pk');
+  const parsedUserId = JSON.parse(storedUserId);
+
+  const GetHistoryOfUser = async () => {
+    if (parsedData) {
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${parsedData.access}`,
+        },
+      };
+      try {
+        const response = await fetch(`http://localhost:8000/history/${parsedUserId}`, requestOptions);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const historyData = await response.json();
+        console.log(historyData);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+  GetHistoryOfUser(); 
+  //return ...
+};
   CzyWkoszyku = (produkt) => {
     const { Cart } = this.state;
     const foundProduct = Cart.find(item => item.produkt === produkt);
