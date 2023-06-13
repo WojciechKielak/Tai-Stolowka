@@ -10,5 +10,3 @@ class Meal(models.Model):
     opis = models.CharField(max_length=100, default="Dodaj opis :D")
     cena = models.DecimalField(max_digits=5, decimal_places=2, default=0)
     photo = models.ImageField(upload_to='meals')
-    wkoszyku = models.BooleanField(default=False)
-    licznik = models.DecimalField(max_digits=5, decimal_places=0, default=1)

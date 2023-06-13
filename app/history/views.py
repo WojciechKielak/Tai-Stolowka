@@ -21,7 +21,6 @@ class HistoryCreateView(APIView):
         cart_items_serializer = CartItemSerializer(cart_items, many=True)
         
         response_data = {
-            'histories': history_serializer.data,
-            'cart_items': cart_items_serializer.data
+            'histories': history_serializer.data
         }
         return Response(response_data)

@@ -17,6 +17,7 @@ ustaw = (produkt) => {
     return {  detailProduct : produkt}
   });
 }
+
 getMealById = (pk) => {
   const storedData = localStorage.getItem('tokens');
   const parsedData = JSON.parse(storedData);
