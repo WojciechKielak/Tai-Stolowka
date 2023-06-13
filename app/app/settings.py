@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'account',
     'meals',
     'history',
-    
+
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
@@ -157,13 +157,24 @@ AUTH_USER_MODEL = 'account.User'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+""" 
+DATABASE FOR SQLITE3
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
+} """
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'stolowka',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'USER': 'root',
+        'PASSWORD': '1234',
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
