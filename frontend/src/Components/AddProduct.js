@@ -64,7 +64,8 @@ const AddProduct = () => {
         <div className="w-75 mx-auto shadow p-5">
           <h2 className="text-center mb-4">Dodaj Danie</h2>
 
-          <div className="form-group">
+          <div className="form-group" style={{ display: "flex", alignItems: "center" }}>
+          <label style={{marginInlineEnd:"35px", fontWeight: "bold", fontSize: "2rem" }}>Nazwa:</label>
             <input
               type="text"
               className="form-control form-control-lg"
@@ -75,7 +76,8 @@ const AddProduct = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ display: "flex", alignItems: "center",marginTop: "20px" }}>
+          <label style={{marginInlineEnd:"65px", fontWeight: "bold", fontSize: "2rem" }}>Opis:</label>
             <input
               type="text"
               className="form-control form-control-lg"
@@ -86,7 +88,8 @@ const AddProduct = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ display: "flex", alignItems: "center",marginTop: "20px" }}>
+          <label style={{marginInlineEnd:"60px", fontWeight: "bold", fontSize: "2rem" }}>Cena:</label>
             <input
               type="number"
               className="form-control form-control-lg"
@@ -97,11 +100,12 @@ const AddProduct = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ display: "flex", alignItems: "center",marginTop: "20px" }}>
+          <label style={{marginInlineEnd:"30px", fontWeight: "bold", fontSize: "2rem" }}>Zdjęcie:</label>
             <input type="file" className="form-control" onChange={(e) => setPhoto(e.target.files[0])} />
           </div>
 
-          <button className="btn btn-primary btn-block" onClick={AddNewProduct}>Dodaj Danie</button>
+          <button className="btn btn-primary btn-block" onClick={AddNewProduct} style={{ marginTop: "20px" }}>Dodaj Danie</button>
         </div>
       </div>
       <Toaster />

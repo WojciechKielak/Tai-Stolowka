@@ -100,9 +100,6 @@ export default class Pay extends Component {
                                             />
                                         </PayPalScriptProvider>
                                     </Col>
-                                    <Button onClick={value.zm}>
-                                        Zapłać
-                                    </Button>
                                 </Row>
                             </Container>
                         </div>

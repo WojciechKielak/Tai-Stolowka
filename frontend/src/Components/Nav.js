@@ -3,6 +3,7 @@ import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ProductCustomer } from "../contexAPI";
 import AuthContext from "../Context/AuthContext";
+import { FaShoppingCart , FaSignOutAlt, FaHistory, FaHome  } from 'react-icons/fa';
 
 export default class Nab extends Component{
     static contextType = AuthContext;
@@ -15,26 +16,26 @@ export default class Nab extends Component{
                     {(value)=>{
                         return( 
                             <Navbar collapseOnSelect expand = "lg" bg="dark" variant="dark">
-                            <Navbar.Brand href="#">Stołówka Szkolna</Navbar.Brand>
+                            <Navbar.Brand style={{ fontSize: '30px' }} href="/">Stołówka Szkolna</Navbar.Brand>
                             <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                             <Navbar.Collapse id="responsive-navbar-nav">
-                                <Nav className="mr-auto">
-                                <Link to='/products'>Produkty</Link>
+                                <Nav  style={{ fontSize: '20px' }} className="mr-auto">
+                                <Link to='/products'style={{ textDecoration: 'none',color:"white", marginLeft: '30px' }}> <FaHome/>  Produkty </Link>
                                 </Nav>
                                 
                             </Navbar.Collapse> 
-                            <Nav > 
-                                <Link style={{color:"mediumspringgreen"}} eventKey={2} to="/history" className="justify-content-end">
-                                            <span style={{ display: 'inline-block', marginRight: '30px'  }}>Historia </span>
+                            <Nav style={{ fontSize: '20px' }}> 
+                                <Link style={{color:"white"}} eventKey={2} to="/history" className="justify-content-end">
+                                            <span style={{ display: 'inline-block', marginRight: '30px'  }}>Historia <FaHistory /></span>
                                 </Link>
                             </Nav> 
-                            <Nav > 
-                                <Link style={{color:"mediumspringgreen"}} eventKey={2} to="/cart" className="justify-content-end">
-                                            <span style={{ display: 'inline-block', marginRight: '30px'  }}>Koszyk ( {value.ilosc()} ) </span>
+                            <Nav style={{ fontSize: '20px' }}> 
+                                <Link style={{color:"white"}} eventKey={2} to="/cart" className="justify-content-end">
+                                            <span style={{ display: 'inline-block', marginRight: '30px'  }}>Koszyk ( {value.ilosc()} ) <FaShoppingCart /></span>
                                 </Link>
                             </Nav> 
-                            <Nav >
-                         <p onClick={logout} style={{ color: "red",marginRight: '15px' }}>Wyloguj</p>
+                            <Nav style={{ fontSize: '20px' }}>
+                         <p onClick={logout} style={{ color: "white",marginRight: '15px' }}>Wyloguj  <FaSignOutAlt /></p>
                          </Nav>
                         </Navbar>
                         )

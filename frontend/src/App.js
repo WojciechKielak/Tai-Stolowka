@@ -14,6 +14,9 @@ import Mmeals from './Components/Mmeals';
 import NavAdmin from './Components/NavAdmin';
 import AddProduct from './Components/AddProduct';
 import HistoryList from './Components/HistoryList';
+import UserList from './Components/UserList';
+import AddUser from './Components/AddUser';
+import PrivateRouteEmployee from './Utils/PrivateRouteEmployee';
 
 function App() {
   return (
@@ -29,11 +32,16 @@ function App() {
             <Route path="/history" element={<div><Nav /><HistoryList /></div>} />
           </Route>
 
-          <Route path="/admin" element={<PrivateRouteAdmin  />} >
-            <Route index element={<div><NavAdmin /><Mmeals /></div>} />
-            <Route path="/admin/details" element={<div><NavAdmin /><Details /></div>} />
-            <Route path="/admin/addproduct" element={<div><NavAdmin /><AddProduct /></div>} />
+          <Route path="/employee" element={<PrivateRouteEmployee  />} >
+            <Route index element={<div><Nav /><Mmeals /></div>} />
+            <Route path="/employee/addproduct" element={<div><Nav /><AddProduct /></div>} />
           </Route>
+
+          <Route path="/admin" element={<PrivateRouteAdmin  />} >
+            <Route index element={<div><NavAdmin /><UserList /></div>} />
+            <Route path="/admin/adduser" element={<div><NavAdmin /><AddUser /></div>} />
+          </Route>
+          
 
           <Route path="/login" element={<LoginPage />} />
         </Routes>
