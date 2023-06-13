@@ -22,13 +22,11 @@ class MealView(APIView):
                 'nazwa': meal.nazwa,
                 'opis': meal.opis,
                 'cena': meal.cena,
-                'photo_url': LOCAL_PORT + meal.photo.url,
-                'wkoszyku': meal.wkoszyku,
-                'licznik': meal.licznik
+                'photo_url': LOCAL_PORT + meal.photo.url
             }
             return Response(output)
         
-        output = [{'pk': meal.pk, 'nazwa': meal.nazwa, 'opis': meal.opis, 'cena': meal.cena, 'photo_url': LOCAL_PORT + meal.photo.url, 'wkoszyku': meal.wkoszyku, 'licznik': meal.licznik} for meal in Meal.objects.all()]
+        output = [{'pk': meal.pk, 'nazwa': meal.nazwa, 'opis': meal.opis, 'cena': meal.cena, 'photo_url': LOCAL_PORT + meal.photo.url} for meal in Meal.objects.all()]
         return Response(output)
     
     def post(self, request):
