@@ -33,10 +33,12 @@ class User(AbstractBaseUser):
     admin = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
     CUSTOMER = 1
-    ADMIN = 2
+    EMPLOYEE = 2
+    ADMIN = 3
         
     ROLE_CHOICES = (
         (CUSTOMER, 'customer'),
+        (EMPLOYEE, 'employee'),
         (ADMIN, 'admin')
     )
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
