@@ -71,6 +71,11 @@ export default class Mmeals extends Component {
                                                     {/* <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt).then(toast.success('Produkt usunięto z bazy ', { duration: 8000 }))}} size="sm">Usuń</Button>  */}
                                                     <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt)}} size="sm">Usuń</Button> 
                                                 </div>
+                                                <div className='col-10 max-auto col-lg-2 '>
+                                                <Link to="/employee/editmeal" onClick={()=>{value.ustaw(produkt)}} >
+                                                    <Button>Edytuj</Button>
+                                                </Link>
+                                                </div>
                                             </div>
                                         </div>
                                         </React.Fragment>

@@ -46,13 +46,13 @@ const AddProduct = () => {
         // navigate('/admin', { state: { success: successMessage } });
         localStorage.setItem('successMessage', 'Produkt dodany do bazy');
         // toast.success('Zapisano do bazy', { duration: 2000 });
-        window.location.href = '/admin';
+        window.location.href = '/employee';
         // toast.success('Produkt ddany do bazy ', { duration: 100000 });
 
       } catch (error) {
         console.error(error);
         localStorage.setItem('Error', 'Błąd podczas dodawania produktu');
-        window.location.href = '/admin';
+        window.location.href = '/employee';
       }
       
     }

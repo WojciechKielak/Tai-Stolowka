@@ -9,7 +9,10 @@ const HistoryList = () => {
     return (
       <div className="container">
         <div> <h1>Historia</h1></div>
-                                <div className='row'>
+                                {/* <div className='row'>
+                                <div className='col-10 max-auto col-lg-2 text-center'>
+                                  
+                                    </div>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong>Nazwa</strong>
                                     </div>
@@ -20,16 +23,15 @@ const HistoryList = () => {
                                         <strong>Ilość</strong>
                                     </div>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
-                                        <strong>Usuń produkt</strong>
-                                    </div>
-                                    <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong>Cena</strong>
                                     </div>
-                                </div>
+                                </div> */}
         <div className="row">
           <ProductCustomer>
             {(value) => {
-              return value.details.map((history) => {
+              // value.HistoryGetter();
+              // console.log("? "+value.history)
+              return value.history.reverse().map((history) => {
                 return <History history={history} />;
               });
             }}

@@ -10,6 +10,8 @@ class ProductProvider extends Component {
     detailProduct:  {},
     Cart : [],
     sumaKoszyka: 0,
+    history: [],
+    ProduktHistoria: [],
 
 }
 ustaw = (produkt) => {
@@ -17,12 +19,25 @@ ustaw = (produkt) => {
     return {  detailProduct : produkt}
   });
 }
+zwracanieProduktuHistoria = (pk) => {
+  let tempCart = [...this.state.details];
+    const selectedProduct = tempCart.find(item => item.pk === pk);
+  //   const index = tempCart.indexOf(selectedProduct);
+  //   const produkt = tempCart[index];
+  // const { Cart } = this.state;
+  // const foundProduct = Cart.find(item => item.produkt === produkt);
+  console.log("selectedProduct");
+  console.log(selectedProduct);
+  
+  return selectedProduct;
+}
 getMealById = (pk) => {
   const storedData = localStorage.getItem('tokens');
   const parsedData = JSON.parse(storedData);
 
   const storedUserId = localStorage.getItem('pk');
   const parsedUserId = JSON.parse(storedUserId);
+  // let produkt;
   const getSingleProduct = async () => {
     if (parsedData) {
       const requestOptions = {
@@ -39,6 +54,11 @@ getMealById = (pk) => {
         }
         const product = await response.json();
         console.log(product);
+        console.log( "PPP");
+        // produkt = product;
+        this.setState({
+          ProduktHistoria: product,
+          });
       } catch (error) {
         console.error(error);
       }
@@ -46,7 +66,8 @@ getMealById = (pk) => {
     }
   };
   getSingleProduct(); 
-  //return product
+  // console.log("P"+produkt);
+  // return produkt;
 };
 
 zm = () => {
@@ -107,7 +128,7 @@ zm = () => {
   });
 };
 
-HistoryGetter = () => {
+HistoryGetter () {
   const storedData = localStorage.getItem('tokens');
   const parsedData = JSON.parse(storedData);
 
@@ -129,7 +150,11 @@ HistoryGetter = () => {
           throw new Error(response.statusText);
         }
         const historyData = await response.json();
-        console.log(historyData);
+        console.log( "SSS");
+        console.log( historyData.histories);
+        this.setState({
+          history: historyData.histories,
+          });
       } catch (error) {
         console.error(error);
       }
@@ -178,6 +203,7 @@ ilosc(){
             details: data,
           });
           console.log(this.state.details)
+          console.log("DDD")
         })
         .catch(err => {
           // Handle error
@@ -188,6 +214,7 @@ ilosc(){
       console.error('Access token is missing or invalid.');
       // Perform appropriate action, e.g., show an error message or redirect to login page
     }
+    this.HistoryGetter();
   }
 
   dodawanie = (cartData) => {
@@ -304,6 +331,8 @@ usuwanieZbazy = async (product) => {
           sumaKoszyka: this.state.sumaKoszyka,
           Cart: this.state.Cart,
           platnosc: this.state.platnosc,
+          history: this.state.history,
+          ProduktHistoria: this.ProduktHistoria,
           br: this.br,
           ustaw: this.ustaw,
           CzyWkoszyku: this.CzyWkoszyku,
@@ -314,6 +343,10 @@ usuwanieZbazy = async (product) => {
           ilosc: this.ilosc,
           zm: this.zm,
           usuwanieZbazy: this.usuwanieZbazy,
+          HistoryGetter: this.HistoryGetter,
+          getMealById: this.getMealById,
+          zwracanieProduktuHistoria: this.zwracanieProduktuHistoria,
+          
 
       }}
 
