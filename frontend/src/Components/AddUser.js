@@ -8,7 +8,7 @@ const AddUser = () => {
   const [email, setEmail] = useState(null);
   const [password1, setPassword1] = useState(null);
   const [password2, setPassword2] = useState(null);
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState(1);
 
   const AddNewUser = async () => {
    
@@ -17,6 +17,8 @@ const AddUser = () => {
     formField.append('password', password1);
     //formField.append('password2', password2);
     formField.append('role', role);
+    console.log(role)
+    console.log("ROLA")
 
     if(password1 === password2)
     {

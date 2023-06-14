@@ -7,7 +7,7 @@ import { Link, withRouter } from "react-router-dom";
 
 export default class Cart extends Component {
   render() {
-    const {total_amt,cart_items,timestamp}= this.props.history;
+    const {total_amt,cart_items,timestamp,status}= this.props.history;
     const formattedTimestamp = new Date(timestamp).toLocaleString();
     return (
       <section>
@@ -45,8 +45,6 @@ export default class Cart extends Component {
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2 '>
                                                     {value.zwracanieProduktuHistoria(produkt.item).nazwa}
-                                                    {/* ewa{value.getMealById(produkt.item)}   */}
-                                                    {/* s{value.ProduktHistoria.nazwa}                  */}
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2'>
                                                     {value.zwracanieProduktuHistoria(produkt.item).cena}                   
@@ -57,6 +55,7 @@ export default class Cart extends Component {
                                                 <div className='col-10 max-auto col-lg-2'>
                                                     {produkt.qty* value.zwracanieProduktuHistoria(produkt.item).cena}                   
                                                 </div> 
+
                                             </div>
                                         </div>
                                         </React.Fragment>
@@ -66,8 +65,9 @@ export default class Cart extends Component {
                                 
                                 <Container>
                                     <Row>
+                                    <strong  style={{ fontSize: '30px' }}>{status && ( <div> Odebrano</div>)}</strong>
                                         <Col>
-                                            <strong  style={{ fontSize: '30px' }}>Zapłacono{": "} {total_amt} PLN</strong>
+                                            <strong  style={{ fontSize: '30px' }}>{status} Zapłacono{": "} {total_amt} PLN</strong>
                                         </Col>
                                     </Row>
                                     <hr style={{ borderTopWidth: '5px' }}></hr>
