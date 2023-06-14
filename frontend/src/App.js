@@ -20,6 +20,7 @@ import NavEmployee from './Components/NavEmployee';
 import PrivateRouteEmployee from './Utils/PrivateRouteEmployee';
 import EditMeal from './Components/EditMeal';
 import GetUsers from './Components/GetUsers';
+import Orders from './Components/Orders';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route index element={<div><NavEmployee /><Mmeals /></div>} />
             <Route path="/employee/addproduct" element={<div><NavEmployee /><AddProduct /></div>} />
             <Route path="/employee/editmeal" element={<div><NavEmployee /><EditMeal /></div>} />
+            <Route path="/employee/orders" element={<div><NavEmployee /><Orders /></div>} />
           </Route>
 
           <Route path="/admin" element={<PrivateRouteAdmin  />} >

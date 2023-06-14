@@ -3,7 +3,7 @@ import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ProductCustomer } from "../contexAPI";
 import AuthContext from "../Context/AuthContext";
-import { FaShoppingCart  , FaSignOutAlt, FaList, FaHome,FaUser  } from 'react-icons/fa';
+import { FaShoppingCart  , FaSignOutAlt, FaList, FaHome,FaUser ,FaHistory } from 'react-icons/fa';
 
 export default class NavEmployee extends Component{
     static contextType = AuthContext;
@@ -20,6 +20,12 @@ export default class NavEmployee extends Component{
                         <Link to='/employee' style={{ textDecoration: 'none',color:"white", marginLeft: '30px' }}> <FaHome/> Produkty</Link>
                         </Nav>
                     </Navbar.Collapse>  
+                    <Nav style={{ fontSize: '20px' }}> 
+                                <Link style={{color:"white"}} eventKey={2} to="/employee/orders" className="justify-content-end">
+                                            <span style={{ display: 'inline-block', marginRight: '30px'  }}>Historia <FaHistory /></span>
+                                </Link>
+                            </Nav> 
+
                     <Nav style={{ fontSize: '20px' }}> 
                                 <Link style={{color:"white"}} eventKey={2} to="/employee" className="justify-content-end">
                                             <span style={{ display: 'inline-block', marginRight: '30px'  }}>Zamówienia <FaShoppingCart  /></span>
