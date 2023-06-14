@@ -22,13 +22,11 @@ class MealView(APIView):
                 'nazwa': meal.nazwa,
                 'opis': meal.opis,
                 'cena': meal.cena,
-                'photo_url': LOCAL_PORT + meal.photo.url,
-                'wkoszyku': meal.wkoszyku,
-                'licznik': meal.licznik
+                'photo_url': LOCAL_PORT + meal.photo.url
             }
             return Response(output)
         
-        output = [{'pk': meal.pk, 'nazwa': meal.nazwa, 'opis': meal.opis, 'cena': meal.cena, 'photo_url': LOCAL_PORT + meal.photo.url, 'wkoszyku': meal.wkoszyku, 'licznik': meal.licznik} for meal in Meal.objects.all()]
+        output = [{'pk': meal.pk, 'nazwa': meal.nazwa, 'opis': meal.opis, 'cena': meal.cena, 'photo_url': LOCAL_PORT + meal.photo.url} for meal in Meal.objects.all()]
         return Response(output)
     
     def post(self, request):
@@ -49,3 +47,16 @@ class MealView(APIView):
             return Response({"message": "Meal deleted successfully"})
         except Meal.DoesNotExist:
             return Response({"message": "Meal not found"}, status=404)
+        
+    def put(self, request, pk):
+        try:
+            meal = Meal.objects.get(pk=pk)
+        except Meal.DoesNotExist:
+            return Response({'message': 'Meal not found.'}, status=404)
+
+        serializer = MealSerializer(meal, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({'message': 'Meal updated successfully.'})
+        else:
+            return Response(serializer.errors, status=400)

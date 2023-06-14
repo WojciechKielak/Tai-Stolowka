@@ -46,7 +46,7 @@ const AddProduct = () => {
         // navigate('/admin', { state: { success: successMessage } });
         localStorage.setItem('successMessage', 'Produkt dodany do bazy');
         // toast.success('Zapisano do bazy', { duration: 2000 });
-        window.location.href = '/employee';
+        window.location.href = '/employee'
         // toast.success('Produkt ddany do bazy ', { duration: 100000 });
 
       } catch (error) {

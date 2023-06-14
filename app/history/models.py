@@ -5,7 +5,7 @@ from meals.models import Meal
 class History(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     total_amt = models.IntegerField(default=0)
-    # paid_status = models.BooleanField(default=False)
+    status = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
