@@ -28,8 +28,8 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<PrivateRoute />} >
-            <Route index element={<HomePage />} />
-            <Route path="/products" element={<div><Nav /><Productlist /></div>} />
+            <Route index element={<div><Nav /><Productlist /></div>} />
+            {/* <Route path="/products" element={<div><Nav /><Productlist /></div>} /> */}
             <Route path="/details" element={<div><Nav /><Details /></div>} />
             <Route path="/cart" element={<div><Nav /><Cart /></div>} />
             <Route path="/pay" element={<div><Nav /><Pay /></div>} />

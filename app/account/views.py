@@ -6,6 +6,7 @@ from .models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.hashers import make_password
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
@@ -13,6 +14,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token = super().get_token(user)
         token['email'] = user.email
         token['role'] = user.role
+        token['pk'] = user.pk
         return token
     
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -38,8 +40,9 @@ def createUser(request):
         if email and password and role:
             # Your user creation logic here
             # Example code to create a new user:
-            user = User.objects.create(email=email, password=password, role=role)
-
+            hashed_password = make_password(password)
+            user = User.objects.create(email=email, password=hashed_password, role=role)
+            
             if user:
                 return Response({'message': 'User created successfully.'}, status=status.HTTP_201_CREATED)
             else:

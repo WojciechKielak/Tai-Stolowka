@@ -16,9 +16,6 @@ export default class NavAdmin extends Component{
                     <Navbar.Brand  style={{ fontSize: '30px',color:"white" }} href="/admin">Stołówka Szkolna</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                     <Navbar.Collapse id="responsive-navbar-nav">
-                        <Nav className="mr-auto"style={{ fontSize: '20px' }} >
-                        <Link to='/admin' style={{ textDecoration: 'none',color:"white", marginLeft: '30px' }}> <FaHome/> Produkty</Link>
-                        </Nav>
                     </Navbar.Collapse>  
                     <Nav style={{ fontSize: '20px' }}> 
                                 <Link style={{color:"white"}} eventKey={2} to="/admin" className="justify-content-end">

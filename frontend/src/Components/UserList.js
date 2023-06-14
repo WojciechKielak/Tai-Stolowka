@@ -11,6 +11,7 @@ const UserList = () => {
   }, []);
 
   const getAllUsers = async () => {
+    
     try {
       const storedData = localStorage.getItem('tokens');
       const parsedData = JSON.parse(storedData);
@@ -29,8 +30,10 @@ const UserList = () => {
       console.log(usersData);
       console.log('UUUU');
       setUsers(usersData);
+      
     } catch (error) {
       console.error(error);
+      
     }
   };
 
@@ -50,17 +53,38 @@ const UserList = () => {
         throw new Error(response.statusText);
       }
       console.log('User deleted successfully.');
+      localStorage.setItem('successMessage', 'Użytkownik został usunięty z bazy');
     } catch (error) {
       console.error(error);
+      localStorage.setItem('Error', 'Błąd podczas usuwania użytkownika');
     }
+    window.location.reload();
   };
-
+  // wyswietlanie = () => {
+  //   console.log('componentDidMount');
+  //   // toast.success("SSSSSSSSSSSSSSSSSSSSSSSS", { duration: 4000 });
+    const successMessage = localStorage.getItem('successMessage');
+    const errorMessage = localStorage.getItem('Error');
+    if (successMessage) {
+      toast.success(successMessage, { duration: 8000 });
+      localStorage.removeItem('successMessage');
+    }
+    if (errorMessage) {
+        toast.success(errorMessage, { duration: 8000 });
+        localStorage.removeItem('Error');
+      }
+  // };
+  console.log('componentDidMount');
+    // toast.success("SSSSSSSSSSSSSSSSSSSSSSSS", { duration: 4000 });
+    
   return (
     <div className="container">
       <h2>Użytkownicy</h2>
-      <Link to="/admin/adduser">
-        <Button>Dodaj nowego użytkownika</Button>
-      </Link>
+      <div className="d-flex justify-content-end">
+        <Link to="/admin/adduser">
+          <Button>Dodaj nowego użytkownika</Button>
+        </Link>
+      </div>
       {users.map((user) => (
         <React.Fragment>
           <div className="container-fluid text-center"></div>
@@ -69,6 +93,7 @@ const UserList = () => {
             <div className="row">
               <div className="col-10 max-auto col-lg-2">{user.email}</div>
               <div className="col-10 max-auto col-lg-2">{user.role}</div>
+
               <div className="col-10 max-auto col-lg-2">
               <button
                 className="btn btn-primary btn-block"
@@ -76,7 +101,8 @@ const UserList = () => {
                 style={{ marginTop: '20px' }}
               >
                 usuń
-              </button></div>
+              </button>
+              </div>
             </div>
           </div>
         </React.Fragment>

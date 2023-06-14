@@ -71,6 +71,8 @@ getMealById = (pk) => {
 };
 
 zm = () => {
+  // localStorage.setItem('successMessage', 'Płatność zaakceptowana');
+  window.location.href = '/';
   const { Cart } = this.state;
   const { sumaKoszyka } = this.state;
 
@@ -93,7 +95,8 @@ zm = () => {
     };
     data.cart_items.push(dictTemp);
   });
-  console.log(data);
+  console.log("---------");
+  console.log(parsedUserId);
   const AddHistory = async () => {
     if (parsedData) {
       const requestOptions = {
@@ -112,8 +115,11 @@ zm = () => {
         }
         const data = await response.json();
         console.log(data);
+        // localStorage.setItem('successMessage', 'Produkt dodany do bazyzzzzzzzzzzzzzzzzzzzzzzzzzzzzz');
+        // window.location.href = '/';
       } catch (error) {
         console.error(error);
+        // window.location.href = '/';
       }
       
     }

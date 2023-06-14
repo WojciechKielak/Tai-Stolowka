@@ -20,7 +20,7 @@ export default class Nab extends Component{
                             <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                             <Navbar.Collapse id="responsive-navbar-nav">
                                 <Nav  style={{ fontSize: '20px' }} className="mr-auto">
-                                <Link to='/products'style={{ textDecoration: 'none',color:"white", marginLeft: '30px' }}> <FaHome/>  Produkty </Link>
+                                <Link to='/'style={{ textDecoration: 'none',color:"white", marginLeft: '30px' }}> <FaHome/>  Produkty </Link>
                                 </Nav>
                                 
                             </Navbar.Collapse> 

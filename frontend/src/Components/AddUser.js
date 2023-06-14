@@ -37,16 +37,16 @@ const AddUser = () => {
           throw new Error(response.statusText);
         }
         console.log(formField);
-        localStorage.setItem('successMessage', 'Produkt dodany do bazy');
+        localStorage.setItem('successMessage', 'Użytkownik dodany do bazy');
         window.location.href = '/admin';
 
       } catch (error) {
         console.error(error);
-        localStorage.setItem('Error', 'Błąd podczas dodawania produktu');
+        localStorage.setItem('Error', 'Błąd podczas dodawania użytkownika do bazy');
         window.location.href = '/admin';
       }
     
-    toast.success("Sukces", { duration: 4000 });
+    // toast.success("Sukces", { duration: 4000 });
     }else{
       toast.error("Błędne hasło", { duration: 4000 });
     }

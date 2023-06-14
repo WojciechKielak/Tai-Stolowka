@@ -65,7 +65,7 @@ export default class Cart extends Component {
                                 
                                 <Container>
                                     <Row>
-                                    <strong  style={{ fontSize: '30px' }}>{status && ( <div> Odebrano</div>)}</strong>
+                                    {/* <strong  style={{ fontSize: '30px' }}>{status && ( <div> Odebrano</div>)}</strong> */}
                                         <Col>
                                             <strong  style={{ fontSize: '30px' }}>{status} Zapłacono{": "} {total_amt} PLN</strong>
                                         </Col>

@@ -23,14 +23,17 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({ 
         'email': e.target.username.value, 
         'password': e.target.password.value, 
+        'pk':e.target.pk,
         'role': e.target.role
       })
     });
     let data = await response.json();
     if(response.status === 200){
         setTokens(data)
+        const decodedToken = jwt_decode(data.access);
         setUser(jwt_decode(data.access))
         localStorage.setItem('tokens', JSON.stringify(data));
+        localStorage.setItem('pk', decodedToken.pk);
         navigate('/')
       }else{
         alert("Cos poszlo nie tak")

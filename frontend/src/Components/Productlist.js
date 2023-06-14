@@ -1,8 +1,21 @@
 import React from 'react';
 import { ProductCustomer } from '../contexAPI';
 import Product from './Product';
+import toast, { Toaster } from 'react-hot-toast';
 
 const ProductList = () => {
+  const successMessage = localStorage.getItem('successMessage');
+  const errorMessage = localStorage.getItem('Error');
+  if (successMessage) {
+    localStorage.removeItem('successMessage');
+    toast.success(successMessage, { duration: 4000 });
+    
+  }
+  if (errorMessage) {
+      toast.success(errorMessage, { duration: 4000 });
+      localStorage.removeItem('Error');
+    }
+
   return (
     <div className="container">
       <div>
@@ -17,6 +30,7 @@ const ProductList = () => {
           }}
         </ProductCustomer>
       </div>
+      <Toaster />
     </div>
   );
 };

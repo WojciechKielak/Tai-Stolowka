@@ -92,14 +92,17 @@ export default class Pay extends Component {
                                                   }}
                                                   onApprove={(data, actions) => {
                                                     return actions.order.capture().then(function (details) {
-                                                      toast.success('Płatność zaakceptwana. Smacznego, ' + details.payer.name.given_name, { duration: 8000 });
+                                                    //   toast.success('Płatność zaakceptwana. Smacznego, ' + details.payer.name.given_name, { duration: 8000 });
+                                                      localStorage.setItem('successMessage', 'Płatność zaakceptwana. Smacznego, ' + details.payer.name.given_name);
                                                       
                                                     }).then(()=>value.zm());
                                                   }}
                                                 // onApprove={this.handlePaymentSuccess}
                                             />
                                         </PayPalScriptProvider>
+                                    
                                     </Col>
+                                    <button onClick={value.zm}>dsadsa</button>
                                 </Row>
                             </Container>
                         </div>
