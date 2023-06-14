@@ -11,27 +11,9 @@ from .models import History, CartItem
 
 class HistoryCreateView(APIView):
 
-    def get(self, request):
-
-        histories = History.objects.all()
-
-        history_serializer = HistorySerializer(histories, many=True)
-
-
-
-
-        response_data = {
-
-            'histories': history_serializer.data
-
-        }
-
-        return Response(response_data)
-
-
-
-
     def post(self, request):
+
+        print(request.data)
 
         serializer = HistorySerializer(data=request.data)
 
@@ -41,34 +23,38 @@ class HistoryCreateView(APIView):
 
             return Response(serializer.data, status=201)
 
+        print(serializer.errors)
+
         return Response(serializer.errors, status=400)
 
 
 
 
-class UserHistoryView(APIView):
+    def get(self, request, user_id=None):
 
-    def get(self, request, user_id):
+        if user_id:
 
-        histories = History.objects.filter(user_id=user_id)
+            histories = History.objects.filter(user_id=user_id)
+
+        else:
+
+            histories = History.objects.all()
+
+       
 
         history_serializer = HistorySerializer(histories, many=True)
 
-
-
+       
 
         cart_items = CartItem.objects.filter(order__in=histories)
 
         cart_items_serializer = CartItemSerializer(cart_items, many=True)
 
-
-
+       
 
         response_data = {
 
-            'histories': history_serializer.data,
-
-            'cart_items': cart_items_serializer.data
+            'histories': history_serializer.data
 
         }
 

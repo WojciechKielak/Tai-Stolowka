@@ -29,6 +29,38 @@ const EditMeal = () => {
 
   };
 
+  const updtMealValues = async (produkt) => {
+    const formField = new FormData();
+    if( nazwa !== null )formField.append('nazwa', nazwa);
+    if( opis !== null )formField.append('opis', opis);
+    if (cena !== null)formField.append('cena', cena);
+    if (photo !== null)formField.append('photo', photo, photo.name);
+
+    const storedData = localStorage.getItem('tokens');
+    const parsedData = JSON.parse(storedData);
+    const requestOptions = {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${parsedData.access}`,
+      },
+      body: formField,
+    };
+  
+    try {
+      const response = await fetch(`http://localhost:8000/meals/${produkt.pk}/`, requestOptions);
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      const updatedMeal = await response.json();
+      console.log(updatedMeal);
+      return updatedMeal;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
   return (
     <ProductCustomer>
       {(value) => {
@@ -84,7 +116,7 @@ console.log("sasasas")
                 </div>
 
                 {/* <button className="btn btn-primary btn-block" onClick={AddNewProduct(value.br())} style={{ marginTop: '20px' }}> */}
-                <button className="btn btn-primary btn-block" onClick={() => AddNewProduct(value.br())} style={{ marginTop: '20px' }}>
+                <button className="btn btn-primary btn-block" onClick={() => updtMealValues(value.br())} style={{ marginTop: '20px' }}>
                   Dodaj Danie
                 </button>
               </div>
