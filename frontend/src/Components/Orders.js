@@ -62,10 +62,27 @@ const Orders = () => {
     }
   };
   const Zrobione = async (order) => {
-    console.log(order);
+    console.log(order.id);
     console.log("ORDE");
+    try {
+      const storedData = localStorage.getItem('tokens');
+      const parsedData = JSON.parse(storedData);
+      const requestOptions = {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${parsedData.access}`,
+        },
+      };
 
-   
+      const response = await fetch(`http://localhost:8000/history/${order.id}/`, requestOptions);
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+    } catch (error) {
+      console.error(error);
+    } 
+    console.log(order.status);
+    console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
   };
 
  
