@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { ProductCustomer } from '../../contexAPI';
-import { Button, Col, Container, Row } from 'react-bootstrap';
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { Button,} from 'react-bootstrap';
 import toast, { Toaster } from "react-hot-toast";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class MealList extends Component {
     wyswietlanie = () => {
@@ -28,7 +27,6 @@ export default class MealList extends Component {
                             <div style={{marginTop:'30px'}}>
                                 <div> 
                                     
-                                    {/* <h1>Spis Dań</h1> */}
                                 </div>
                                 <div className='row' style={{ fontSize: '18px' }}>
                                     <div className='col-20 max-auto col-lg-3 text-center'>

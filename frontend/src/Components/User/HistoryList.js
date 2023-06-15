@@ -8,8 +8,10 @@ const HistoryList = () => {
       <div className="row">
         <ProductCustomer>
           {(value) => {
-            if (!value.history || !Array.isArray(value.history)) {
-              return null;
+            if (!value.history  || value.history.length === 0) {
+              return (
+                <h1  >Brak historii</h1>
+              );
             }
 
             const reversedHistory = value.history.slice().reverse();
