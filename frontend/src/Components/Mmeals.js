@@ -26,7 +26,14 @@ export default class Mmeals extends Component {
       <section>
         <ProductCustomer>
             { value => {
-
+if(value.details.length==0)
+            {
+            //   window.location.href = '/employee';
+            //   console.log("TAAAAAK")
+            //   value.componentDidMount();
+            //   if(value.details.length  == 0)console.log("TAAAAAK2222222222")
+            }
+            // else window.location.href = '/';
                         return (
                             <div>
                                 <div> 

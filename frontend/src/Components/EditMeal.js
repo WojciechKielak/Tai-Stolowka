@@ -1,78 +1,80 @@
 import React, { useState } from 'react';
+import { useNavigate  } from 'react-router-dom';
+import axios from 'axios';
+import toast, { Toaster } from "react-hot-toast";
 import { ProductCustomer } from '../contexAPI';
-import { Link } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import toast, { Toaster } from 'react-hot-toast';
 
 const EditMeal = () => {
-    const [nazwa, setNazwa] = useState(null);
-    const [opis, setOpis] = useState(null);
-    const [cena, setCena] = useState(null);
-    const [photo, setPhoto] = useState(null);
-  
-    const AddNewProduct = async (produkt) => {
-     
+  const navigate = useNavigate();
+  const [nazwa, setNazwa] = useState(null);
+  const [opis, setOpis] = useState(null);
+  const [cena, setCena] = useState(null);
+  const [photo, setPhoto] = useState(null);
+
+  const AddNewProduct = async (produkt) => {
+   
+    if( nazwa || opis || cena || photo){
       const formField = new FormData();
+
+    
+    if (nazwa ) {
       formField.append('nazwa', nazwa);
+    }
+    if ( opis ) {
       formField.append('opis', opis);
+    }
+    if (cena ) {
       formField.append('cena', cena);
-      // formField.append('photo', photo, photo.name);
-      if (photo !== null) {
-        formField.append('photo', photo, photo.name);
-      }
-      formField.append('wkoszyku', 1);
-      formField.append('licznik', 1);
-      console.log(photo)
-      console.log("photo")
-      console.log(produkt)
-      
+    }
+    if ( photo ) {
+      formField.append('photo', photo, photo.name);
+    }
 
-  };
-
-  const updtMealValues = async (produkt) => {
-    const formField = new FormData();
-    if( nazwa !== null )formField.append('nazwa', nazwa);
-    if( opis !== null )formField.append('opis', opis);
-    if (cena !== null)formField.append('cena', cena);
-    if (photo !== null)formField.append('photo', photo, photo.name);
-
+    console.log(formField)
     const storedData = localStorage.getItem('tokens');
     const parsedData = JSON.parse(storedData);
-    const requestOptions = {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${parsedData.access}`,
-      },
-      body: formField,
-    };
-  
-    try {
-      const response = await fetch(`http://localhost:8000/meals/${produkt.pk}/`, requestOptions);
-      if (!response.ok) {
-        throw new Error(response.statusText);
+    if (parsedData) {
+      const requestOptions = {
+        method: 'PUT',
+        //mode: 'no-cors',
+        headers: {
+          //'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${parsedData.access}`,
+        },
+        body: formField,//JSON.stringify(newMealData)
+      };
+      try {
+        const response = await fetch(`http://localhost:8000/meals/${produkt.pk}/`, requestOptions);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        const data = await response.json();
+        console.log(data);
+        localStorage.setItem('successMessage', 'Zmodyfiwkowano produkt');
+        window.location.href = '/employee';
+      } catch (error) {
+        console.error(error);
+        localStorage.setItem('Error', 'Błąd podczas modyfikacji produktu');
+        window.location.href = '/employee';
       }
-      const updatedMeal = await response.json();
-      console.log(updatedMeal);
-      return updatedMeal;
-    } catch (error) {
-      console.error(error);
-      return null;
+    }
+      
+    }else{
+      toast.error("Wprowadź jakąś zianę", { duration: 8000 });
     }
   };
 
+  
   return (
     <ProductCustomer>
       {(value) => {
-        // const { nazwa, opis, cena, photo_url } = value.br();
-        let naz = value.br().nazwa;
 console.log(value.br())
 console.log("sasasas")
         return (
           <div className="container">
             <div className="container">
               <div className="w-75 mx-auto shadow p-5">
-                <h2 className="text-center mb-4">Dodaj Danie</h2>
+                <h2 className="text-center mb-4">Modyfikuj Danie</h2>
 
                 <div className="form-group" style={{ display: 'flex', alignItems: 'center' }}>
                   <label style={{ marginInlineEnd: '35px', fontWeight: 'bold', fontSize: '2rem' }}>Nazwa:</label>
@@ -82,7 +84,7 @@ console.log("sasasas")
                     placeholder={value.br().nazwa}
                     name="nazwa"
                     value={nazwa}
-                    onChange={(e) => setNazwa(e.target.value)}
+                    onChange={(e) => { console.log(e.target.value);setNazwa(e.target.value)}}
                   />
                 </div>
 
@@ -116,8 +118,8 @@ console.log("sasasas")
                 </div>
 
                 {/* <button className="btn btn-primary btn-block" onClick={AddNewProduct(value.br())} style={{ marginTop: '20px' }}> */}
-                <button className="btn btn-primary btn-block" onClick={() => updtMealValues(value.br())} style={{ marginTop: '20px' }}>
-                  Dodaj Danie
+                <button className="btn btn-primary btn-block" onClick={() => AddNewProduct(value.br())} style={{ marginTop: '20px' }}>
+                  Zaktualizuj Danie
                 </button>
               </div>
             </div>

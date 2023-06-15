@@ -4,7 +4,7 @@ import axios from 'axios';
 import toast, { Toaster } from "react-hot-toast";
 
 const AddProduct = () => {
-  const navigate = useNavigate();
+
   const [nazwa, setNazwa] = useState(null);
   const [opis, setOpis] = useState(null);
   const [cena, setCena] = useState(null);
@@ -12,13 +12,12 @@ const AddProduct = () => {
 
   const AddNewProduct = async () => {
    
-    const formField = new FormData();
+    if(nazwa && opis && cena && photo){
+      const formField = new FormData();
     formField.append('nazwa', nazwa);
     formField.append('opis', opis);
     formField.append('cena', cena);
     formField.append('photo', photo, photo.name);
-    formField.append('wkoszyku', 1);
-    formField.append('licznik', 1);
     console.log(photo)
     const storedData = localStorage.getItem('tokens');
     const parsedData = JSON.parse(storedData);
@@ -56,6 +55,7 @@ const AddProduct = () => {
       }
       
     }
+    }else toast.error("Uzupełnij wszsytkie dane!", { duration: 8000 });
   };
 
   return (

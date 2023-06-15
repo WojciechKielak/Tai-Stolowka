@@ -12,7 +12,8 @@ const AddUser = () => {
 
   const AddNewUser = async () => {
    
-    const formField = new FormData();
+    if(email && password1 && password2){
+      const formField = new FormData();
     formField.append('email', email);
     formField.append('password', password1);
     //formField.append('password2', password2);
@@ -48,8 +49,9 @@ const AddUser = () => {
     
     // toast.success("Sukces", { duration: 4000 });
     }else{
-      toast.error("Błędne hasło", { duration: 4000 });
+      toast.error("Błędne hasło", { duration: 8000 });
     }
+    }else toast.error("Uzupełnij wszsytkie dane!", { duration: 8000 });
   };
 
   return (
