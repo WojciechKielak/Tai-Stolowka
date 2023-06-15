@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import toast, { Toaster } from "react-hot-toast";
-import { ProductCustomer } from '../contexAPI';
+import { ProductCustomer } from '../../contexAPI';
 
 const EditMeal = () => {
   const [nazwa, setNazwa] = useState(null);
@@ -71,7 +71,7 @@ const EditMeal = () => {
                   <input
                     type="text"
                     className="form-control form-control-lg"
-                    placeholder={value.br().nazwa}
+                    placeholder={value.zwracaProdukt().nazwa}
                     name="nazwa"
                     value={nazwa}
                     onChange={(e) =>setNazwa(e.target.value)}
@@ -95,7 +95,7 @@ const EditMeal = () => {
                   <input
                     type="number"
                     className="form-control form-control-lg"
-                    placeholder={value.br().cena}
+                    placeholder={value.zwracaProdukt().cena}
                     name="cena"
                     value={cena}
                     onChange={(e) => setCena(e.target.value)}
@@ -108,7 +108,7 @@ const EditMeal = () => {
                 </div>
 
                 <div className="text-center mb-4">
-                <button className="btn btn-primary btn-block" onClick={() => AddNewProduct(value.br())} style={{ marginTop: '20px' ,fontSize: '17px'}}>
+                <button className="btn btn-primary btn-block" onClick={() => AddNewProduct(value.zwracaProdukt())} style={{ marginTop: '20px' ,fontSize: '17px'}}>
                   Zaktualizuj Danie
                 </button>
                 </div>

@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ProductCustomer } from "../contexAPI";
-import AuthContext from "../Context/AuthContext";
+import { ProductCustomer } from "../../contexAPI";
+import AuthContext from "../../Context/AuthContext";
 import { FaShoppingCart , FaSignOutAlt, FaHistory, FaHome  } from 'react-icons/fa';
 
 export default class Nab extends Component{

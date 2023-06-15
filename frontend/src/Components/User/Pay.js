@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ProductCustomer } from '../contexAPI';
+import { ProductCustomer } from '../../contexAPI';
 import { Col, Container, Row } from 'react-bootstrap';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import toast, { Toaster } from "react-hot-toast";

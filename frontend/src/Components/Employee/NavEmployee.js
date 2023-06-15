@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import AuthContext from "../Context/AuthContext";
+import AuthContext from "../../Context/AuthContext";
 import { FaShoppingCart  , FaSignOutAlt, FaHome } from 'react-icons/fa';
 
 export default class NavEmployee extends Component{

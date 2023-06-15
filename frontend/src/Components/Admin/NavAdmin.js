@@ -1,7 +1,7 @@
 import React, {Component, useContext} from "react";
 import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import AuthContext from "../Context/AuthContext";
+import AuthContext from "../../Context/AuthContext";
 import { FaSignOutAlt, FaUser  } from 'react-icons/fa';
 
 export default class NavAdmin extends Component{

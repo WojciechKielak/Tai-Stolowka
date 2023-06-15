@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { ProductCustomer } from '../contexAPI';
+import { ProductCustomer } from '../../contexAPI';
 
 const HistoryList = () => {
   return (

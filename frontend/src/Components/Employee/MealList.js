@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { ProductCustomer } from '../contexAPI';
+import { ProductCustomer } from '../../contexAPI';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, withRouter } from "react-router-dom";
 
-export default class Mmeals extends Component {
+export default class MealList extends Component {
     wyswietlanie = () => {
         const successMessage = localStorage.getItem('successMessage');
         const errorMessage = localStorage.getItem('Error');
@@ -70,7 +70,7 @@ export default class Mmeals extends Component {
                                                     <Button  onClick={()=>{value.usuwanieZbazy(produkt)}}  style={{ fontSize: '16px' }}>Usuń</Button> 
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2 text-center' style={{ marginTop: '70px' }}>
-                                                <Link to="/employee/editmeal" onClick={()=>{value.ustaw(produkt)}} >
+                                                <Link to="/employee/editmeal" onClick={()=>{value.ustawProdukt(produkt)}} >
                                                     <Button style={{ fontSize: '16px' }}>Edytuj</Button>
                                                 </Link>
                                                 </div>

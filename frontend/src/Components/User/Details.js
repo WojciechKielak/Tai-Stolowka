@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ProductCustomer } from '../contexAPI';
+import { ProductCustomer } from '../../contexAPI';
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 

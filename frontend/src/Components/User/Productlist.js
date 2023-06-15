@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductCustomer } from '../contexAPI';
+import { ProductCustomer } from '../../contexAPI';
 import Product from './Product';
 import toast, { Toaster } from 'react-hot-toast';
 
