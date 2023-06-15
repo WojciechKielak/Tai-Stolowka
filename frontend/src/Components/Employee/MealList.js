@@ -5,7 +5,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 export default class MealList extends Component {
-    wyswietlanie = () => {
+
+    componentDidMount () {
         const successMessage = localStorage.getItem('successMessage');
         const errorMessage = localStorage.getItem('Error');
         if (successMessage) {
@@ -23,6 +24,7 @@ export default class MealList extends Component {
       <section>
         <ProductCustomer>
             { value => {
+                // this.wyswietlanie(); 
                         return (
                             <div style={{marginTop:'30px'}}>
                                 <div> 
