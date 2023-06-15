@@ -13,9 +13,9 @@ export default class Cart extends Component {
             { value => {
                 if( value.Cart.length > 0 ){
                         return (
-                            <div>
-                                <div> <h1>Koszyk</h1></div>
-                                <div className='row'>
+                            <div  style={{ fontSize: '18px', marginTop:'30px'}}>
+                                {/* <div> <h1>Koszyk</h1></div> */}
+                                <div className='row' style={{ fontSize: '18px' }}>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong></strong>
                                     </div>
@@ -39,26 +39,26 @@ export default class Cart extends Component {
                                     return (
                                         <React.Fragment>
                                             <hr style={{ borderTopWidth: '2px' }}></hr>
-                                        <div className='container-fluid text-center '>
+                                        <div className='container-fluid text-center ' >
                                             <div className='row '>
                                                 <div className='col-10 max-auto col-lg-2'>
-                                                    <img tyle={{width: '6rem', height: '4rem'}} src={cartData.produkt.photo_url} className='img-fluid'/>                        
+                                                    <img style={{width: '18rem', height: '12rem'}} src={cartData.produkt.photo_url}/>                        
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2 '>
+                                                <div className='col-10 max-auto col-lg-2 ' style={{ marginTop: '70px' }}>
                                                     {cartData.produkt.nazwa}                   
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2'>
+                                                <div className='col-10 max-auto col-lg-2' style={{ marginTop: '70px' }}>
                                                     {cartData.produkt.cena}                   
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2'>
-                                                    <Button size="sm" className='qtyminus' onClick={()=>value.odejmowanie(cartData)}>-</Button> 
+                                                <div className='col-10 max-auto col-lg-2' style={{ marginTop: '70px' }}>
+                                                    <Button  style={{fontSize:'11px', backgroundColor:"blue" ,borderColor:"blue"}} className='qtyminus' onClick={()=>value.odejmowanie(cartData)}>-</Button> 
                                                     <span style={{ marginLeft: '10px' }}><span style={{ marginRight: '10px' }}>{cartData.licznik}</span></span>
-                                                    <Button size="sm" className='qtyplus' onClick={()=>value.dodawanie(cartData)}>+</Button>
+                                                    <Button style={{fontSize:'11px', backgroundColor:"blue" ,borderColor:"blue"}} className='qtyplus' onClick={()=>value.dodawanie(cartData)}>+</Button>
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2 '>
-                                                    <Button variant='secondary' onClick={()=>{value.usuwanie(cartData)}} size="sm">Usuń</Button>  
+                                                <div className='col-10 max-auto col-lg-2 ' style={{ marginTop: '70px' }}>
+                                                    <Button  style={{fontSize:'16px', backgroundColor:"blue" ,borderColor:"blue"}} onClick={()=>{value.usuwanie(cartData)}} size="sm">Usuń</Button>  
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2'>
+                                                <div className='col-10 max-auto col-lg-2' style={{ marginTop: '70px' }}>
                                                     {cartData.cenaczesciowa}                   
                                                 </div>
                                             </div>
@@ -75,62 +75,12 @@ export default class Cart extends Component {
                                         </Col>
                                         <Col>
                                             <Link to="/pay">
-                                            <Button >Podsumowanie</Button>
+                                            <Button  style={{fontSize:'16px', backgroundColor:"blue" ,borderColor:"blue"}}>Podsumowanie</Button>
                                             </Link>
-                                            {/* <PayPalScriptProvider options={{ "client-id": "Abwme5PEsYp3jeVsDmlzwXCnXr8uPjpqa4MfWwPTyl5PF9-lvwJn14xmS5DVeC2vcQTc6rTYNm-kQDeV", currency: "PLN" }}>
-                                                <PayPalButtons
-                                                
-                                                    style={{ layout: "horizontal" }}
-                                                    createOrder={(data, actions) => {
-                                                        return actions.order.create({
-                                                        purchase_units: [
-                                                            {
-                                                            amount: {
-                                                                value: value.sumaKoszyka.toString(),
-                                                            },
-                                                            },
-                                                        ],
-                                                        });
-                                                    }}
-                                                    
-                                                    updateOrderTotal={(data, actions) => {
-                                                        return actions.order.create({
-                                                        purchase_units: [
-                                                            {
-                                                            amount: {
-                                                                value: value.sumaKoszyka.toString(),
-                                                            },
-                                                            },
-                                                        ],
-                                                        });
-                                                    }}
-                                                    onCancel={() => toast(
-                                                        "You cancelled the payment. Try again by clicking the PayPal button", 
-                                                        {
-                                                          duration: 6000
-                                                        }
-                                                      )}
-                                                      onError={(err) => {
-                                                        toast.error("There was an error processing your payment. If this error please contact support.", { duration: 600 });
-                                                      }}
-                                                      onApprove={(data, actions) => {
-                                                        return actions.order.capture().then(function (details) {
-                                                          toast.success('Payment completed. Thank you, ' + details.payer.name.given_name);
-
-                                                        });
-                                                      }}
-                                                    // onApprove={function(data, actions) {
-                                                    //     return actions.order.capture().then(function(details) {
-                                                    //       // Wywołanie metody obsługi sukcesu płatności
-                                                    //       this.handlePaymentSuccess();
-                                                    //     }.bind(this));
-                                                    //   }.bind(this)}
-                                                />
-                                            </PayPalScriptProvider> */}
                                         </Col>
                                         <Col>
-                                            <Link to="/products">
-                                            <Button >Kontynuuj zakupy</Button>
+                                            <Link to="/">
+                                            <Button  style={{fontSize:'16px', backgroundColor:"blue" ,borderColor:"blue"}}>Kontynuuj zakupy</Button>
                                             </Link>
                                         </Col>
                                     </Row>

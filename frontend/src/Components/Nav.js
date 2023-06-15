@@ -16,25 +16,25 @@ export default class Nab extends Component{
                     {(value)=>{
                         return( 
                             <Navbar collapseOnSelect expand = "lg" bg="dark" variant="dark">
-                            <Navbar.Brand style={{ fontSize: '30px' }} href="/">Stołówka Szkolna</Navbar.Brand>
+                            <Navbar.Brand style={{ fontSize: '32px' }} href="/">Stołówka Szkolna</Navbar.Brand>
                             <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                             <Navbar.Collapse id="responsive-navbar-nav">
-                                <Nav  style={{ fontSize: '20px' }} className="mr-auto">
+                                <Nav  style={{ fontSize: '22px' }} className="mr-auto">
                                 <Link to='/'style={{ textDecoration: 'none',color:"white", marginLeft: '30px' }}> <FaHome/>  Produkty </Link>
                                 </Nav>
                                 
                             </Navbar.Collapse> 
-                            <Nav style={{ fontSize: '20px' }}> 
-                                <Link style={{color:"white"}} eventKey={2} to="/history" className="justify-content-end">
+                            <Nav style={{ fontSize: '22px' }}> 
+                                <Link style={{color:"white"}} eventKey={2} onClick={()=>{window.location.href = '/history'}} className="justify-content-end">
                                             <span style={{ display: 'inline-block', marginRight: '30px'  }}>Historia <FaHistory /></span>
                                 </Link>
                             </Nav> 
-                            <Nav style={{ fontSize: '20px' }}> 
+                            <Nav style={{ fontSize: '22px' }}> 
                                 <Link style={{color:"white"}} eventKey={2} to="/cart" className="justify-content-end">
                                             <span style={{ display: 'inline-block', marginRight: '30px'  }}>Koszyk ( {value.ilosc()} ) <FaShoppingCart /></span>
                                 </Link>
                             </Nav> 
-                            <Nav style={{ fontSize: '20px' }}>
+                            <Nav style={{ fontSize: '22px' }}>
                          <p onClick={logout} style={{ color: "white",marginRight: '15px' }}>Wyloguj  <FaSignOutAlt /></p>
                          </Nav>
                         </Navbar>

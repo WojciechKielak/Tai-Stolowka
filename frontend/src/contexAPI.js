@@ -109,7 +109,7 @@ zm = () => {
         body: JSON.stringify(data),
       };
       try {
-        const response = await fetch('http://localhost:8000/history/', requestOptions);
+        const response = await fetch('http://localhost:8000/history/post/', requestOptions);
         if (!response.ok) {
           throw new Error(response.statusText);
         }

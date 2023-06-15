@@ -18,10 +18,10 @@ const ProductList = () => {
 
   return (
     <div className="container">
-      <div>
+      {/* <div>
         <h1>Dania</h1>
-      </div>
-      <div className="row">
+      </div> */}
+      <div className="row" style={{marginTop:'30px'}}>
         <ProductCustomer>
           {(value) => {
             return value.details.map((product) => {

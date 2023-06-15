@@ -41,7 +41,7 @@ export default class Cart extends Component {
                                         <div className='container-fluid text-center '>
                                             <div className='row '>
                                                 <div className='col-10 max-auto col-lg-2'>
-                                                    <img tyle={{width: '6rem', height: '4rem'}} src={value.zwracanieProduktuHistoria(produkt.item).photo_url} className='img-fluid'/>                        
+                                                    <img style={{width: '18rem', height: '12rem'}} src={value.zwracanieProduktuHistoria(produkt.item).photo_url} className='img-fluid'/>                        
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2 '>
                                                     {value.zwracanieProduktuHistoria(produkt.item).nazwa}

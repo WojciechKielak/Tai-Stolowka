@@ -13,16 +13,16 @@ export default class NavAdmin extends Component{
         return (
             <div>
                <Navbar collapseOnSelect expand="lg" style={{ backgroundColor: 'grey' }}>
-                    <Navbar.Brand  style={{ fontSize: '30px',color:"white" }} href="/admin">Stołówka Szkolna</Navbar.Brand>
+                    <Navbar.Brand  style={{ fontSize: '32px',color:"white" }} href="/admin">Stołówka Szkolna</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
                     <Navbar.Collapse id="responsive-navbar-nav">
                     </Navbar.Collapse>  
-                    <Nav style={{ fontSize: '20px' }}> 
+                    <Nav style={{ fontSize: '22px' }}> 
                                 <Link style={{color:"white"}} eventKey={2} to="/admin" className="justify-content-end">
                                             <span style={{ display: 'inline-block', marginRight: '30px'  }}>Użytkownicy <FaUser /></span>
                                 </Link>
                             </Nav> 
-                        <Nav style={{ fontSize: '20px' }}>
+                        <Nav style={{ fontSize: '22px' }}>
                          <p onClick={logout} style={{ color: "white",marginRight: '15px' }}>Wyloguj <FaSignOutAlt /> </p>
                          </Nav>
                 </Navbar>

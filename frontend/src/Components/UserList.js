@@ -66,11 +66,11 @@ const UserList = () => {
     const successMessage = localStorage.getItem('successMessage');
     const errorMessage = localStorage.getItem('Error');
     if (successMessage) {
-      toast.success(successMessage, { duration: 8000 });
+      toast.success(successMessage, { duration: 4000 });
       localStorage.removeItem('successMessage');
     }
     if (errorMessage) {
-        toast.success(errorMessage, { duration: 8000 });
+        toast.error(errorMessage, { duration: 4000 });
         localStorage.removeItem('Error');
       }
   // };
@@ -79,17 +79,35 @@ const UserList = () => {
     
   return (
     <div className="container">
-      <h2>Użytkownicy</h2>
-      <div className="d-flex justify-content-end">
+      {/* <h2>Użytkownicy</h2> */}
+      {/* <div className="d-flex justify-content-end">
+        
         <Link to="/admin/adduser">
           <Button>Dodaj nowego użytkownika</Button>
         </Link>
-      </div>
+      </div> */}
+      <div className='row' style={{ fontSize: '20px', marginTop:'30px' }}>
+
+                                    <div className='col-10 max-auto col-lg-2 text-center'>
+                                        <strong>Email</strong>
+                                    </div>
+                                    <div className='col-10 max-auto col-lg-2 text-center'>
+                                        <strong>Rola</strong>
+                                    </div>
+                                    <div className='col-10 max-auto col-lg-2 text-center'>
+                                        <strong>Usuń użytkownika</strong>
+                                    </div>
+                                    <div className='col-10 max-auto col-lg-6 text-center'>
+                                    <Link to="/admin/adduser">
+                                    <Button style={{ backgroundColor: 'grey', borderColor: "grey" ,fontSize: '19px' }}>Dodaj nowego użytkownika</Button>
+                                    </Link>
+                                    </div>
+                                </div>
       {users.map((user) => (
         <React.Fragment>
           <div className="container-fluid text-center"></div>
           <hr style={{ borderTopWidth: '2px' }}></hr>
-          <div className="container-fluid text-center">
+          <div className="container-fluid text-center" style={{ fontSize: '20px' }}>
             <div className="row">
               <div className="col-10 max-auto col-lg-2">{user.email}</div>
               <div className="col-10 max-auto col-lg-2">{user.role}</div>
@@ -98,7 +116,7 @@ const UserList = () => {
               <button
                 className="btn btn-primary btn-block"
                 onClick={() => handleDelete(user)}
-                style={{ marginTop: '20px' }}
+                style={{ backgroundColor: 'grey', borderColor: "grey" ,fontSize: '17px' }}
               >
                 usuń
               </button>

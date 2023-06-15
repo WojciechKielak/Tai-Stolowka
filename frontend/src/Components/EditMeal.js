@@ -50,7 +50,7 @@ const EditMeal = () => {
         }
         const data = await response.json();
         console.log(data);
-        localStorage.setItem('successMessage', 'Zmodyfiwkowano produkt');
+        localStorage.setItem('successMessage', 'Zmodyfikowano produkt');
         window.location.href = '/employee';
       } catch (error) {
         console.error(error);
@@ -60,7 +60,7 @@ const EditMeal = () => {
     }
       
     }else{
-      toast.error("Wprowadź jakąś zianę", { duration: 8000 });
+      toast.error("Wprowadź jakąś zianę", { duration: 4000 });
     }
   };
 
@@ -74,7 +74,7 @@ console.log("sasasas")
           <div className="container">
             <div className="container">
               <div className="w-75 mx-auto shadow p-5">
-                <h2 className="text-center mb-4">Modyfikuj Danie</h2>
+                <h1 className="text-center mb-4">Modyfikuj Danie</h1>
 
                 <div className="form-group" style={{ display: 'flex', alignItems: 'center' }}>
                   <label style={{ marginInlineEnd: '35px', fontWeight: 'bold', fontSize: '2rem' }}>Nazwa:</label>
@@ -117,10 +117,11 @@ console.log("sasasas")
                   <input type="file" className="form-control"  onChange={(e) => setPhoto(e.target.files[0])} />
                 </div>
 
-                {/* <button className="btn btn-primary btn-block" onClick={AddNewProduct(value.br())} style={{ marginTop: '20px' }}> */}
-                <button className="btn btn-primary btn-block" onClick={() => AddNewProduct(value.br())} style={{ marginTop: '20px' }}>
+                <div className="text-center mb-4">
+                <button className="btn btn-primary btn-block" onClick={() => AddNewProduct(value.br())} style={{ marginTop: '20px' ,fontSize: '17px'}}>
                   Zaktualizuj Danie
                 </button>
+                </div>
               </div>
             </div>
             <Toaster />

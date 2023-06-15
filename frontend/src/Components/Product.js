@@ -8,7 +8,7 @@ export default class Product extends Component {
   render() {
     const {nazwa,opis,cena,photo_url}= this.props.product;
     return (
-      <div className='col-9 mx-auto col-md-6 col-lg-3'>
+      <div className='col-9 mx-auto col-md-6 col-lg-3'style={{ marginTop: '30px' }}>
         {/* 5,5 #3 */}
         <ProductCustomer>
             {(value) => (
@@ -23,12 +23,12 @@ export default class Product extends Component {
                     <Card.Footer>
                         <Row>
                         <Col>
-                                <Button size='sm' disabled={value.CzyWkoszyku(this.props.product)} onClick={()=>{value.DodajDoKoszyka(this.props.product)}}  variant="secondary">
+                                <Button size='sm' style={{ fontSize:'14px', backgroundColor:"blue" ,borderColor:"blue"}} disabled={value.CzyWkoszyku(this.props.product)} onClick={()=>{value.DodajDoKoszyka(this.props.product)}}  variant="secondary">
                                     {value.CzyWkoszyku(this.props.product)===true? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
                                 </Button>
                             </Col>
-                            <Col style={{ display: 'grid', placeItems: 'center' }}>
-                                <big className='text-muted text-centre'>PLN {cena}</big>
+                            <Col style={{ display: 'grid', placeItems: 'center' ,fontSize:'18px'}}>
+                                <big className='text-muted text-centre'>{cena } PLN</big>
                             </Col>
                         </Row>
                     </Card.Footer>

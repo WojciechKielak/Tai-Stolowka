@@ -16,7 +16,7 @@ export default class Mmeals extends Component {
           localStorage.removeItem('successMessage');
         }
         if (errorMessage) {
-            toast.success(errorMessage, { duration: 4000 });
+            toast.error(errorMessage, { duration: 4000 });
             localStorage.removeItem('Error');
           }
       }
@@ -26,65 +26,61 @@ export default class Mmeals extends Component {
       <section>
         <ProductCustomer>
             { value => {
-if(value.details.length==0)
-            {
-            //   window.location.href = '/employee';
-            //   console.log("TAAAAAK")
-            //   value.componentDidMount();
-            //   if(value.details.length  == 0)console.log("TAAAAAK2222222222")
-            }
-            // else window.location.href = '/';
                         return (
-                            <div>
+                            <div style={{marginTop:'30px'}}>
                                 <div> 
                                     
-                                    <h1>Spis Dań</h1>
-                                    <span style={{ display: 'inline-block', float: 'right', marginRight:"30px"}}>
-                                    <Link to="/employee/addproduct">
-                                        <Button>Dodaj nowe danie</Button>
-                                    </Link>
-                                      </span>
+                                    {/* <h1>Spis Dań</h1> */}
                                 </div>
-                                <div className='row'>
-                                    <div className='col-10 max-auto col-lg-2 text-center'>
-                                        <strong></strong>
+                                <div className='row' style={{ fontSize: '18px' }}>
+                                    <div className='col-20 max-auto col-lg-3 text-center'>
+
                                     </div>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong>Nazwa</strong>
                                     </div>
-                                    <div className='col-10 max-auto col-lg-2 text-center'>
+                                    <div className='col-10 max-auto col-lg-1 text-center'>
                                         <strong>Cena</strong>
                                     </div>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong>Usuń produkt</strong>
+                                    </div>
+                                    <div className='col-10 max-auto col-lg-2 text-center'>
+                                        <strong>Edytuj produkt</strong>
+                                    </div>
+                                    <div className='col-10 max-auto col-lg-2 text-center'>
+                                    <Link to="/employee/addproduct">
+                                        <Button style={{ fontSize: '18px' }}>Dodaj nowe danie</Button>
+                                    </Link>
                                     </div>
                                 </div>
                                 {value.details.map( produkt => {
                                     return (
                                         <React.Fragment>
                                             <hr style={{ borderTopWidth: '2px' }}></hr>
-                                        <div className='container-fluid text-center '>
-                                            <div className='row '>
-                                                <div className='col-10 max-auto col-lg-2'>
-                                                    <img tyle={{width: '6rem', height: '4rem'}} src={produkt.photo_url} className='img-fluid'/>                        
+                                        {/* <div className='container-fluid text-center '> */}
+                                            <div className='row ' style={{ fontSize: '18px' }}>
+                                                <div className='col-20 max-auto col-lg-3 text-center' >
+                                                    {/* <img style={{width: '21rem', height: '14rem',  border: '5px solid #ccc', borderRadius: '10px'}} src={produkt.photo_url} className='img-fluid'/>                 */}
+                                                    <img style={{ width: '21rem', height: '14rem', border: '5px solid #ccc', borderRadius: '10px'}} src={produkt.photo_url} className='img-fluid'/>           
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2 '>
+                                                <div className='col-10 max-auto col-lg-2 text-center' style={{ marginTop: '70px' }}>
                                                     {produkt.nazwa}                   
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2'>
+                                                <div className='col-10 max-auto col-lg-1 text-center' style={{ marginTop: '70px' }}>
                                                     {produkt.cena}                   
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2 '>
+                                                <div className='col-10 max-auto col-lg-2 text-center' style={{ marginTop: '70px' }}>
                                                     {/* <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt).then(toast.success('Produkt usunięto z bazy ', { duration: 8000 }))}} size="sm">Usuń</Button>  */}
-                                                    <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt)}} size="sm">Usuń</Button> 
+                                                    <Button  onClick={()=>{value.usuwanieZbazy(produkt)}}  style={{ fontSize: '16px' }}>Usuń</Button> 
                                                 </div>
-                                                <div className='col-10 max-auto col-lg-2 '>
+                                                <div className='col-10 max-auto col-lg-2 text-center' style={{ marginTop: '70px' }}>
                                                 <Link to="/employee/editmeal" onClick={()=>{value.ustaw(produkt)}} >
-                                                    <Button>Edytuj</Button>
+                                                    <Button style={{ fontSize: '16px' }}>Edytuj</Button>
                                                 </Link>
                                                 </div>
                                             </div>
-                                        </div>
+                                        {/* </div> */}
                                         </React.Fragment>
                                     )
                                 })}

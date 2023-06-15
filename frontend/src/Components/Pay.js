@@ -13,8 +13,8 @@ export default class Pay extends Component {
             { value => {
                 if( value.Cart.length > 0 ){
                     return (
-                        <div>
-                            <div> <h1>Podsumowanie</h1></div>
+                        <div style={{ fontSize: '18px', marginTop:'30px'}}>
+                            {/* <div> <h1>Podsumowanie</h1></div> */}
                             <div className='row'>
                                 <div className='col-10 max-auto col-lg-2 text-center'>
                                     <strong></strong>
@@ -39,18 +39,18 @@ export default class Pay extends Component {
                                     <div className='container-fluid text-center '>
                                         <div className='row '>
                                             <div className='col-10 max-auto col-lg-2'>
-                                                <img tyle={{width: '6rem', height: '4rem'}} src={cartData.produkt.photo_url} className='img-fluid'/>                        
+                                                <img style={{width: '18rem', height: '12rem'}} src={cartData.produkt.photo_url} className='img-fluid'/>                        
                                             </div>
-                                            <div className='col-10 max-auto col-lg-2 '>
+                                            <div className='col-10 max-auto col-lg-2 'style={{ marginTop: '70px' }}>
                                                 {cartData.produkt.nazwa}                   
                                             </div>
-                                            <div className='col-10 max-auto col-lg-2'>
+                                            <div className='col-10 max-auto col-lg-2'style={{ marginTop: '70px' }}>
                                                 {cartData.produkt.cena}                   
                                             </div>
-                                            <div className='col-10 max-auto col-lg-2'>            
+                                            <div className='col-10 max-auto col-lg-2'style={{ marginTop: '70px' }}>            
                                                 {cartData.licznik}
                                             </div>
-                                            <div className='col-10 max-auto col-lg-2'>
+                                            <div className='col-10 max-auto col-lg-2'style={{ marginTop: '70px' }}>
                                                 {cartData.cenaczesciowa}                   
                                             </div>
                                         </div>
@@ -62,7 +62,7 @@ export default class Pay extends Component {
                             <hr style={{ borderTopWidth: '5px' }}></hr>
                             <Container>
                                 <Row>
-                                    <Col><strong  style={{ fontSize: '30px' }}>Suma{": "} {value.sumaKoszyka}</strong></Col>
+                                    <Col><strong  style={{ fontSize: '25px' }}>Suma{": "} {value.sumaKoszyka}</strong></Col>
                                     <Col>
                                     
                                         <PayPalScriptProvider options={{ "client-id": "Abwme5PEsYp3jeVsDmlzwXCnXr8uPjpqa4MfWwPTyl5PF9-lvwJn14xmS5DVeC2vcQTc6rTYNm-kQDeV", currency: "PLN" }}>
@@ -83,12 +83,10 @@ export default class Pay extends Component {
                                                 
                                                 onCancel={() => toast(
                                                     "Anulowałeś płatność, spróbuj ponownie nacisnąć przycisk PayPal", 
-                                                    {
-                                                      duration: 6000
-                                                    }
+                                                    { duration: 4000 }
                                                   )}
                                                   onError={(err) => {
-                                                    toast.error("Błąd!", { duration: 6000 });
+                                                    toast.error("Błąd!", { duration: 4000 });
                                                   }}
                                                   onApprove={(data, actions) => {
                                                     return actions.order.capture().then(function (details) {

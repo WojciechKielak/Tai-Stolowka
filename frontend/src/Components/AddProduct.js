@@ -55,14 +55,14 @@ const AddProduct = () => {
       }
       
     }
-    }else toast.error("Uzupełnij wszsytkie dane!", { duration: 8000 });
+    }else toast.error("Uzupełnij wszystkie dane!", { duration: 4000 });
   };
 
   return (
     <div className="container">
       <div className="container">
         <div className="w-75 mx-auto shadow p-5">
-          <h2 className="text-center mb-4">Dodaj Danie</h2>
+          <h1 className="text-center mb-4" >Dodaj Danie</h1>
 
           <div className="form-group" style={{ display: "flex", alignItems: "center" }}>
           <label style={{marginInlineEnd:"35px", fontWeight: "bold", fontSize: "2rem" }}>Nazwa:</label>
@@ -105,7 +105,9 @@ const AddProduct = () => {
             <input type="file" className="form-control" onChange={(e) => setPhoto(e.target.files[0])} />
           </div>
 
-          <button className="btn btn-primary btn-block" onClick={AddNewProduct} style={{ marginTop: "20px" }}>Dodaj Danie</button>
+          <div className="text-center mb-4">
+          <button className="btn btn-primary btn-block" onClick={AddNewProduct} style={{ marginTop: "20px",fontSize: '17px' }}>Dodaj Danie</button>
+          </div>
         </div>
       </div>
       <Toaster />

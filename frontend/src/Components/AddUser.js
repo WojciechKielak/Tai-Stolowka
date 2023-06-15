@@ -49,16 +49,16 @@ const AddUser = () => {
     
     // toast.success("Sukces", { duration: 4000 });
     }else{
-      toast.error("Błędne hasło", { duration: 8000 });
+      toast.error("Błędne hasło", { duration: 4000 });
     }
-    }else toast.error("Uzupełnij wszsytkie dane!", { duration: 8000 });
+    }else toast.error("Uzupełnij wszystkie dane!", { duration: 4000 });
   };
 
   return (
     <div className="container">
       <div className="container">
         <div className="w-75 mx-auto shadow p-5">
-          <h2 className="text-center mb-4">Dodaj Użytkownika</h2>
+          <h1 className="text-center mb-4">Dodaj Użytkownika</h1>
 
           <div className="form-group" style={{ display: "flex", alignItems: "center" }}>
            <label style={{marginInlineEnd:"134px", fontWeight: "bold", fontSize: "2rem" }}>Email:</label>
@@ -104,15 +104,17 @@ const AddUser = () => {
               value={role}
               onChange={(e) => setRole(e.target.value)}
             >
-            <option value={1}>Uczeń</option>
+            <option value={1}>uczeń</option>
             <option value={2}>pracownik</option>
-            <option value={3}>Administrator</option>
+            <option value={3}>administrator</option>
             </select>
           </div>
 
+          <div className="text-center mb-4">
+          <button className="btn btn-primary btn-block" onClick={AddNewUser} style={{ marginTop: "20px" ,backgroundColor: 'grey', borderColor: "grey",fontSize: '17px'}}>Dodaj użytkownika</button>
+          </div>
 
-
-          <button className="btn btn-primary btn-block" onClick={AddNewUser} style={{ marginTop: "20px" }}>Dodaj użytkownika</button>
+          
         </div>
       </div>
       <Toaster />
