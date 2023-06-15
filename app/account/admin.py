@@ -4,6 +4,7 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .forms import UserAdminCreationForm, UserAdminChangeForm
 
+
 User = get_user_model()
 
 
@@ -14,17 +15,15 @@ class UserAdmin(BaseUserAdmin):
     ordering = ['email']
     filter_horizontal = []
 
-    form = UserAdminChangeForm  # for updating user in admin
-    add_form = UserAdminCreationForm    # for creating user in admin
+    form = UserAdminChangeForm  
+    add_form = UserAdminCreationForm 
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        ('Personal info', {'fields': ()}), # if you have any personal info fields e.g. names, include them as strings in the empty tuple.
+        ('Personal info', {'fields': ()}), 
         ('Permissions', {'fields': ('admin', 'staff', 'is_active','role')})
     )
-    '''
-    add_fieldsets is not a standard ModelAdmin attribute. UserAdmin overides get_fieldsets
-    to use this attribute when creating a user. '''
+
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -35,6 +34,5 @@ class UserAdmin(BaseUserAdmin):
 
 admin.site.register(User, UserAdmin)
 
-# if you are not using the groups, you can remove the Group model by:
 admin.site.unregister(Group)
 

@@ -3,8 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None, is_staff=False, is_admin=False, is_active=True): # may look repetitive adding staff, admin and active status, but it simplifies the
-                                                                                        # work when using create_staffuser() and create_superuser()
+    def create_user(self, email, password=None, is_staff=False, is_admin=False, is_active=True):
+                                                                                       
         if not email:
             raise ValueError("User must have an email address")
         if not password:
@@ -43,8 +43,7 @@ class User(AbstractBaseUser):
     )
     role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)
     
-    USERNAME_FIELD = 'email'  # this now over rides the username field and now email is the default field
-    # REQUIRED_FIELDS = [] if you add another field and need it to be required, include it in the list
+    USERNAME_FIELD = 'email' 
 
     objects = UserManager()
 
@@ -52,13 +51,9 @@ class User(AbstractBaseUser):
         return self.email
 
     def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
         return True
 
     def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
         return True
 
     @property
@@ -68,7 +63,3 @@ class User(AbstractBaseUser):
     @property
     def is_admin(self):
         return self.admin
-
-    """@property
-    def is_active(self):
-        return self.is_active"""

@@ -4,7 +4,6 @@ from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
 
 
-# Create your models here.
 class Meal(models.Model):
     nazwa = models.CharField(max_length=20)
     opis = models.CharField(max_length=100, default="Dodaj opis :D")

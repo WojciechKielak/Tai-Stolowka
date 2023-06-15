@@ -31,15 +31,11 @@ def getRoutes(request):
 
 @api_view(['POST'])
 def createUser(request):
-    # Extract the user data from the request
         email = request.data.get('email')
         password = request.data.get('password')
         role = request.data.get('role')
 
-        # Perform validation and create the user
         if email and password and role:
-            # Your user creation logic here
-            # Example code to create a new user:
             hashed_password = make_password(password)
             user = User.objects.create(email=email, password=hashed_password, role=role)
             

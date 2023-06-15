@@ -2,8 +2,8 @@ from rest_framework import serializers
 from .models import History, CartItem
 from meals.models import Meal
 
+
 class CartItemSerializer(serializers.ModelSerializer):
-    #item = serializers.PrimaryKeyRelatedField(queryset=Meal.objects.all())
     class Meta:
         model = CartItem
         fields = ['item', 'qty']

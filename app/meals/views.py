@@ -9,7 +9,6 @@ from django.shortcuts import get_object_or_404
 from app.settings import LOCAL_PORT
 from django.http import JsonResponse
 
-# Create your views here.
 
 class MealView(APIView):
     permission_classes = [IsAuthenticated]
@@ -38,10 +37,8 @@ class MealView(APIView):
     def delete(self, request, pk):
         try:
             print(pk)
-            #pk = request.GET.get('pk')
-            #print(pk)
             meal = Meal.objects.get(pk=pk)
-            meal.photo.delete()  # Delete associated photo file
+            meal.photo.delete() 
             meal.delete()
             
             return Response({"message": "Meal deleted successfully"})
