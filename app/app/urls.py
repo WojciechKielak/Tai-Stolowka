@@ -28,7 +28,7 @@ urlpatterns = [
     path('api/', include('account.urls')),
     path('meals/', MealView.as_view(), name='Meals'),
     path('history/', HistoryCreateView.as_view(), name='History'),
-
+    path('history/<int:history_id>/', HistoryCreateView.as_view()),
     path('history/<int:user_id>/', HistoryCreateView.as_view(), name='History'),
     path('meals/<int:pk>/', MealView.as_view(), name='Meal-delete-get')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # New
