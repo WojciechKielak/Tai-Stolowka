@@ -1,9 +1,8 @@
-import React, {Component, useContext} from "react";
+import React, {Component} from "react";
 import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ProductCustomer } from "../contexAPI";
 import AuthContext from "../Context/AuthContext";
-import { FaShoppingCart  , FaSignOutAlt, FaList, FaHome,FaUser ,FaHistory } from 'react-icons/fa';
+import { FaShoppingCart  , FaSignOutAlt, FaHome } from 'react-icons/fa';
 
 export default class NavEmployee extends Component{
     static contextType = AuthContext;

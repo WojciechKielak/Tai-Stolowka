@@ -1,8 +1,7 @@
 import React from 'react';
-import HomePage from './Pages/HomePage';
 import LoginPage  from './Pages/LoginPage';
 import PrivateRoute from './Utils/PrivateRoute';
-import PrivateRouteAdmin from './Utils/PrivateRouteAdmin'; // Dodaj import
+import PrivateRouteAdmin from './Utils/PrivateRouteAdmin';
 import { AuthProvider } from './Context/AuthContext';
 import { Routes, Route } from 'react-router-dom';
 import Nav from "./Components/Nav";
@@ -19,7 +18,6 @@ import AddUser from './Components/AddUser';
 import NavEmployee from './Components/NavEmployee';
 import PrivateRouteEmployee from './Utils/PrivateRouteEmployee';
 import EditMeal from './Components/EditMeal';
-import GetUsers from './Components/GetUsers';
 import Orders from './Components/Orders';
 
 function App() {
@@ -29,7 +27,6 @@ function App() {
         <Routes>
           <Route path="/" element={<PrivateRoute />} >
             <Route index element={<div><Nav /><Productlist /></div>} />
-            {/* <Route path="/products" element={<div><Nav /><Productlist /></div>} /> */}
             <Route path="/details" element={<div><Nav /><Details /></div>} />
             <Route path="/cart" element={<div><Nav /><Cart /></div>} />
             <Route path="/pay" element={<div><Nav /><Pay /></div>} />
@@ -46,7 +43,6 @@ function App() {
           <Route path="/admin" element={<PrivateRouteAdmin  />} >
             <Route index element={<div><NavAdmin /><UserList /></div>} />
             <Route path="/admin/adduser" element={<div><NavAdmin /><AddUser /></div>} />
-            <Route path="/admin/a" element={<div><NavAdmin /><GetUsers /></div>} />
           </Route>
           
 

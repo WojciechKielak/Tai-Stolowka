@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { ProductCustomer } from '../contexAPI';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -14,7 +14,6 @@ export default class Pay extends Component {
                 if( value.Cart.length > 0 ){
                     return (
                         <div style={{ fontSize: '18px', marginTop:'30px'}}>
-                            {/* <div> <h1>Podsumowanie</h1></div> */}
                             <div className='row'>
                                 <div className='col-10 max-auto col-lg-2 text-center'>
                                     <strong></strong>
@@ -90,17 +89,14 @@ export default class Pay extends Component {
                                                   }}
                                                   onApprove={(data, actions) => {
                                                     return actions.order.capture().then(function (details) {
-                                                    //   toast.success('Płatność zaakceptwana. Smacznego, ' + details.payer.name.given_name, { duration: 8000 });
                                                       localStorage.setItem('successMessage', 'Płatność zaakceptwana. Smacznego, ' + details.payer.name.given_name);
                                                       
-                                                    }).then(()=>value.zm());
+                                                    }).then(()=>value.platnosc());
                                                   }}
-                                                // onApprove={this.handlePaymentSuccess}
                                             />
                                         </PayPalScriptProvider>
                                     
                                     </Col>
-                                    <button onClick={value.zm}>dsadsa</button>
                                 </Row>
                             </Container>
                         </div>

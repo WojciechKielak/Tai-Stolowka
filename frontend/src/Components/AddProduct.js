@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate  } from 'react-router-dom';
-import axios from 'axios';
 import toast, { Toaster } from "react-hot-toast";
 
 const AddProduct = () => {
@@ -18,18 +16,15 @@ const AddProduct = () => {
     formField.append('opis', opis);
     formField.append('cena', cena);
     formField.append('photo', photo, photo.name);
-    console.log(photo)
     const storedData = localStorage.getItem('tokens');
     const parsedData = JSON.parse(storedData);
     if (parsedData) {
       const requestOptions = {
         method: 'POST',
-        //mode: 'no-cors',
         headers: {
-          //'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${parsedData.access}`,
         },
-        body: formField,//JSON.stringify(newMealData)
+        body: formField,
       };
       try {
         const response = await fetch('http://localhost:8000/meals/', requestOptions);
@@ -38,15 +33,8 @@ const AddProduct = () => {
         }
         const data = await response.json();
         console.log(data);
-        // toast.success('Produkt dodany do bazy', { duration: 2000 }).then(() => {
-        //   window.location.href = '/admin';
-        // });
-        // const successMessage = 'Produkt dodany do bazy';
-        // navigate('/admin', { state: { success: successMessage } });
         localStorage.setItem('successMessage', 'Produkt dodany do bazy');
-        // toast.success('Zapisano do bazy', { duration: 2000 });
         window.location.href = '/employee'
-        // toast.success('Produkt ddany do bazy ', { duration: 100000 });
 
       } catch (error) {
         console.error(error);

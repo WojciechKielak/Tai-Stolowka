@@ -1,9 +1,8 @@
 import React, {Component, useContext} from "react";
 import { Navbar, Nav} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ProductCustomer } from "../contexAPI";
 import AuthContext from "../Context/AuthContext";
-import { FaShoppingCart , FaSignOutAlt, FaHistory, FaHome,FaUser  } from 'react-icons/fa';
+import { FaSignOutAlt, FaUser  } from 'react-icons/fa';
 
 export default class NavAdmin extends Component{
     static contextType = AuthContext;

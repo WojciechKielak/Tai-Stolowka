@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
+import React from 'react';
+
 
 const DeleteUser = ({ user }) => {
   const handleDelete = async () => {
@@ -22,7 +20,6 @@ const DeleteUser = ({ user }) => {
       if (!response.ok) {
         throw new Error(response.statusText);
       }
-      console.log('User deleted successfully.');
     } catch (error) {
       console.error(error);
     }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
-import axios from 'axios';
 import toast, { Toaster } from "react-hot-toast";
 
 const AddUser = () => {
@@ -16,10 +15,7 @@ const AddUser = () => {
       const formField = new FormData();
     formField.append('email', email);
     formField.append('password', password1);
-    //formField.append('password2', password2);
     formField.append('role', role);
-    console.log(role)
-    console.log("ROLA")
 
     if(password1 === password2)
     {
@@ -37,7 +33,6 @@ const AddUser = () => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        console.log(formField);
         localStorage.setItem('successMessage', 'Użytkownik dodany do bazy');
         window.location.href = '/admin';
 
@@ -47,7 +42,6 @@ const AddUser = () => {
         window.location.href = '/admin';
       }
     
-    // toast.success("Sukces", { duration: 4000 });
     }else{
       toast.error("Błędne hasło", { duration: 4000 });
     }

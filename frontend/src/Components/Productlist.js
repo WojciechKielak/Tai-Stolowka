@@ -18,9 +18,6 @@ const ProductList = () => {
 
   return (
     <div className="container">
-      {/* <div>
-        <h1>Dania</h1>
-      </div> */}
       <div className="row" style={{marginTop:'30px'}}>
         <ProductCustomer>
           {(value) => {

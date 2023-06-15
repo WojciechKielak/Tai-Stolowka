@@ -6,9 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Link, withRouter } from "react-router-dom";
 
 export default class Mmeals extends Component {
-    componentDidMount = () => {
-        console.log('componentDidMount');
-        // toast.success("SSSSSSSSSSSSSSSSSSSSSSSS", { duration: 4000 });
+    wyswietlanie = () => {
         const successMessage = localStorage.getItem('successMessage');
         const errorMessage = localStorage.getItem('Error');
         if (successMessage) {
@@ -58,10 +56,8 @@ export default class Mmeals extends Component {
                                     return (
                                         <React.Fragment>
                                             <hr style={{ borderTopWidth: '2px' }}></hr>
-                                        {/* <div className='container-fluid text-center '> */}
                                             <div className='row ' style={{ fontSize: '18px' }}>
                                                 <div className='col-20 max-auto col-lg-3 text-center' >
-                                                    {/* <img style={{width: '21rem', height: '14rem',  border: '5px solid #ccc', borderRadius: '10px'}} src={produkt.photo_url} className='img-fluid'/>                 */}
                                                     <img style={{ width: '21rem', height: '14rem', border: '5px solid #ccc', borderRadius: '10px'}} src={produkt.photo_url} className='img-fluid'/>           
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2 text-center' style={{ marginTop: '70px' }}>
@@ -71,7 +67,6 @@ export default class Mmeals extends Component {
                                                     {produkt.cena}                   
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2 text-center' style={{ marginTop: '70px' }}>
-                                                    {/* <Button variant='secondary' onClick={()=>{value.usuwanieZbazy(produkt).then(toast.success('Produkt usunięto z bazy ', { duration: 8000 }))}} size="sm">Usuń</Button>  */}
                                                     <Button  onClick={()=>{value.usuwanieZbazy(produkt)}}  style={{ fontSize: '16px' }}>Usuń</Button> 
                                                 </div>
                                                 <div className='col-10 max-auto col-lg-2 text-center' style={{ marginTop: '70px' }}>
@@ -80,7 +75,6 @@ export default class Mmeals extends Component {
                                                 </Link>
                                                 </div>
                                             </div>
-                                        {/* </div> */}
                                         </React.Fragment>
                                     )
                                 })}

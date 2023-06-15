@@ -8,11 +8,7 @@ export default class Details extends Component {
     return (
         <ProductCustomer>
             {(value)=> {
-                // const {id, title, img, info, price, company, inCart} = value.detailProduct;
-                // const { nazwa, opis, cena, photo_url } = value.find((item) => item.nazwa === "Pizza");
-                const { nazwa, opis, cena, photo_url } = value.br();
-                // product = this.state.details.find((item) => item.nazwa === nazwa)
-            
+                const { nazwa, opis, cena, photo_url } = value.zwracaProdukt();
                 return (
                     <div className='container'>
                         <div className=' col-10 mx-auto text-center'>
@@ -36,9 +32,9 @@ export default class Details extends Component {
                                     </strong>
                                     
                                 </h5>
-                                <br/>
-                                <br/>
-                                <br/>
+                                <zwracaProdukt/>
+                                <zwracaProdukt/>
+                                <zwracaProdukt/>
                             
                                 <div>
                                 <span style={{ display: 'inline-block',}}>
@@ -46,8 +42,8 @@ export default class Details extends Component {
                                     
                                 </span>
                                 <span style={{ display: 'inline-block',float: 'right'}}>
-                                        <Button  style={{fontSize:'16px', backgroundColor:"blue" ,borderColor:"blue"}} disabled={value.CzyWkoszyku(value.br())} onClick={()=>{value.DodajDoKoszyka(value.br())}}  >
-                                            {value.CzyWkoszyku(value.br())===true? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
+                                        <Button  style={{fontSize:'16px', backgroundColor:"blue" ,borderColor:"blue"}} disabled={value.CzyWkoszyku(value.zwracaProdukt())} onClick={()=>{value.DodajDoKoszyka(value.zwracaProdukt())}}  >
+                                            {value.CzyWkoszyku(value.zwracaProdukt())===true? (<span>W koszyku</span>) : (<span>Dodaj do Koszyka</span>)}
                                         </Button>
                                     </span>
 

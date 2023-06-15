@@ -9,7 +9,7 @@ const HistoryList = () => {
         <ProductCustomer>
           {(value) => {
             if (!value.history || !Array.isArray(value.history)) {
-              return null; // or handle the case where history is not defined or not an array
+              return null;
             }
 
             const reversedHistory = value.history.slice().reverse();
@@ -88,7 +88,7 @@ const HistoryList = () => {
                   </div>
                 );
               }
-              return null; // or handle the case where cart_items is empty
+              return null; 
             });
           }}
         </ProductCustomer>

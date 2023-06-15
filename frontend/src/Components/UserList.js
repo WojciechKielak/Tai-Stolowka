@@ -27,8 +27,6 @@ const UserList = () => {
         throw new Error(response.statusText);
       }
       const usersData = await response.json();
-      console.log(usersData);
-      console.log('UUUU');
       setUsers(usersData);
       
     } catch (error) {
@@ -60,9 +58,6 @@ const UserList = () => {
     }
     window.location.reload();
   };
-  // wyswietlanie = () => {
-  //   console.log('componentDidMount');
-  //   // toast.success("SSSSSSSSSSSSSSSSSSSSSSSS", { duration: 4000 });
     const successMessage = localStorage.getItem('successMessage');
     const errorMessage = localStorage.getItem('Error');
     if (successMessage) {
@@ -73,19 +68,11 @@ const UserList = () => {
         toast.error(errorMessage, { duration: 4000 });
         localStorage.removeItem('Error');
       }
-  // };
-  console.log('componentDidMount');
-    // toast.success("SSSSSSSSSSSSSSSSSSSSSSSS", { duration: 4000 });
+
+
     
   return (
     <div className="container">
-      {/* <h2>Użytkownicy</h2> */}
-      {/* <div className="d-flex justify-content-end">
-        
-        <Link to="/admin/adduser">
-          <Button>Dodaj nowego użytkownika</Button>
-        </Link>
-      </div> */}
       <div className='row' style={{ fontSize: '20px', marginTop:'30px' }}>
 
                                     <div className='col-10 max-auto col-lg-2 text-center'>

@@ -9,11 +9,10 @@ export default class Product extends Component {
     const {nazwa,opis,cena,photo_url}= this.props.product;
     return (
       <div className='col-9 mx-auto col-md-6 col-lg-3'style={{ marginTop: '30px' }}>
-        {/* 5,5 #3 */}
         <ProductCustomer>
             {(value) => (
                 <Card >
-                    <Link to="/details" onClick={()=>{value.ustaw(this.props.product)}}>
+                    <Link to="/details" onClick={()=>{value.ustawProdukt(this.props.product)}}>
                         <Card.Img variant='top' src={photo_url}  width={250} height={250}></Card.Img>
 
                     </Link>

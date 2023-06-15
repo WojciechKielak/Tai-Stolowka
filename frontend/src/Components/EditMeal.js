@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate  } from 'react-router-dom';
-import axios from 'axios';
 import toast, { Toaster } from "react-hot-toast";
 import { ProductCustomer } from '../contexAPI';
 
 const EditMeal = () => {
-  const navigate = useNavigate();
   const [nazwa, setNazwa] = useState(null);
   const [opis, setOpis] = useState(null);
   const [cena, setCena] = useState(null);
@@ -29,27 +26,22 @@ const EditMeal = () => {
     if ( photo ) {
       formField.append('photo', photo, photo.name);
     }
-
-    console.log(formField)
     const storedData = localStorage.getItem('tokens');
     const parsedData = JSON.parse(storedData);
     if (parsedData) {
       const requestOptions = {
         method: 'PUT',
-        //mode: 'no-cors',
         headers: {
-          //'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${parsedData.access}`,
         },
-        body: formField,//JSON.stringify(newMealData)
+        body: formField,
       };
       try {
         const response = await fetch(`http://localhost:8000/meals/${produkt.pk}/`, requestOptions);
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        const data = await response.json();
-        console.log(data);
+        const data = await response.json();;
         localStorage.setItem('successMessage', 'Zmodyfikowano produkt');
         window.location.href = '/employee';
       } catch (error) {
@@ -68,8 +60,6 @@ const EditMeal = () => {
   return (
     <ProductCustomer>
       {(value) => {
-console.log(value.br())
-console.log("sasasas")
         return (
           <div className="container">
             <div className="container">
@@ -84,7 +74,7 @@ console.log("sasasas")
                     placeholder={value.br().nazwa}
                     name="nazwa"
                     value={nazwa}
-                    onChange={(e) => { console.log(e.target.value);setNazwa(e.target.value)}}
+                    onChange={(e) =>setNazwa(e.target.value)}
                   />
                 </div>
 

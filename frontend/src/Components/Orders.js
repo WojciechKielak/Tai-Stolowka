@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { ProductCustomer } from '../contexAPI';
 
@@ -41,8 +39,6 @@ const Orders = () => {
         throw new Error(response.statusText);
       }
       const historyData = await response.json();
-      console.log(historyData.histories);
-      console.log('HHHPPP ');
       setHistory(historyData.histories);
     } catch (error) {
       console.error(error);
@@ -66,16 +62,12 @@ const Orders = () => {
         throw new Error(response.statusText);
       }
       const usersData = await response.json();
-      console.log(usersData);
-      console.log('UUUUTTTTTT');
       setUsers(usersData);
     } catch (error) {
       console.error(error);
     }
   };
   const Zrobione = async (order) => {
-    console.log(order.id);
-    console.log("ORDE");
     try {
       const storedData = localStorage.getItem('tokens');
       const parsedData = JSON.parse(storedData);
@@ -97,14 +89,12 @@ const Orders = () => {
       localStorage.setItem('Error', 'Błąd');
       window.location.href = '/employee/orders';
     } 
-    console.log(order.status);
-    console.log("PPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+
   };
 
  
   return (
     <div className="container" style={{marginTop:'30px'}} >
-      {/* <h2>Zamówienia</h2> */}
       <ProductCustomer>
         {(value) => (
           <>
@@ -139,7 +129,6 @@ const Orders = () => {
                       <div className='row '>
                       <div className='col-10 max-auto col-lg-6'>
                                 <img
-                                  // style={{ width: '60%', height: 'auto' }} 
                                   style={{ width: '24rem', height: '16rem',  border: '5px solid #ccc', borderRadius: '10px'}}
                                   src={value.zwracanieProduktuHistoria(produkt.item).photo_url}
                                   className='img-fluid'

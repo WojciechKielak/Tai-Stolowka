@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
-//import { dataProducts, prodInDetails } from './appData';
-// import { dataProducts} from './appData';
+import { Toaster } from 'react-hot-toast';
 const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
@@ -14,64 +12,18 @@ class ProductProvider extends Component {
     ProduktHistoria: [],
 
 }
-ustaw = (produkt) => {
+ustawProdukt = (produkt) => {
   this.setState(() => {
     return {  detailProduct : produkt}
   });
 }
 zwracanieProduktuHistoria = (pk) => {
   let tempCart = [...this.state.details];
-    const selectedProduct = tempCart.find(item => item.pk === pk);
-  //   const index = tempCart.indexOf(selectedProduct);
-  //   const produkt = tempCart[index];
-  // const { Cart } = this.state;
-  // const foundProduct = Cart.find(item => item.produkt === produkt);
-  console.log("selectedProduct");
-  console.log(selectedProduct);
-  
+  const selectedProduct = tempCart.find(item => item.pk === pk);
   return selectedProduct;
 }
-getMealById = (pk) => {
-  const storedData = localStorage.getItem('tokens');
-  const parsedData = JSON.parse(storedData);
 
-  const storedUserId = localStorage.getItem('pk');
-  const parsedUserId = JSON.parse(storedUserId);
-  // let produkt;
-  const getSingleProduct = async () => {
-    if (parsedData) {
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${parsedData.access}`,
-        },
-      };
-      try {
-        const response = await fetch(`http://localhost:8000/meals/${pk}`, requestOptions);
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        const product = await response.json();
-        console.log(product);
-        console.log( "PPP");
-        // produkt = product;
-        this.setState({
-          ProduktHistoria: product,
-          });
-      } catch (error) {
-        console.error(error);
-      }
-      
-    }
-  };
-  getSingleProduct(); 
-  // console.log("P"+produkt);
-  // return produkt;
-};
-
-zm = () => {
-  // localStorage.setItem('successMessage', 'Płatność zaakceptowana');
+platnosc = () => {
   window.location.href = '/';
   const { Cart } = this.state;
   const { sumaKoszyka } = this.state;
@@ -81,7 +33,6 @@ zm = () => {
 
   const storedUserId = localStorage.getItem('pk');
   const parsedUserId = JSON.parse(storedUserId);
-  console.log(sumaKoszyka);
   const data = {
     "user": parsedUserId,
     "total_amt": sumaKoszyka,
@@ -95,13 +46,10 @@ zm = () => {
     };
     data.cart_items.push(dictTemp);
   });
-  console.log("---------");
-  console.log(parsedUserId);
   const AddHistory = async () => {
     if (parsedData) {
       const requestOptions = {
         method: 'POST',
-        //mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${parsedData.access}`,
@@ -115,11 +63,8 @@ zm = () => {
         }
         const data = await response.json();
         console.log(data);
-        // localStorage.setItem('successMessage', 'Produkt dodany do bazyzzzzzzzzzzzzzzzzzzzzzzzzzzzzz');
-        // window.location.href = '/';
       } catch (error) {
         console.error(error);
-        // window.location.href = '/';
       }
       
     }
@@ -156,7 +101,6 @@ HistoryGetter () {
           throw new Error(response.statusText);
         }
         const historyData = await response.json();
-        console.log( "SSS");
         console.log( historyData.histories);
         this.setState({
           history: historyData.histories,
@@ -167,7 +111,6 @@ HistoryGetter () {
     }
   };
   GetHistoryOfUser(); 
-  //return ...
 };
   CzyWkoszyku = (produkt) => {
     const { Cart } = this.state;
@@ -186,7 +129,7 @@ HistoryGetter () {
     }, () => {
       this.odswiezSumaKoszyka();
     })};
-br(){
+zwracaProdukt(){
   return this.detailProduct;
 }
 ilosc(){
@@ -209,16 +152,12 @@ ilosc(){
             details: data,
           });
           console.log(this.state.details)
-          console.log("DDD")
         })
         .catch(err => {
-          // Handle error
           console.error(err);
         });
     } else {
-      // Handle the case when the access token is null or not available
       console.error('Access token is missing or invalid.');
-      // Perform appropriate action, e.g., show an error message or redirect to login page
     }
     this.HistoryGetter();
   }
@@ -232,9 +171,6 @@ ilosc(){
     produkt.licznik = produkt.licznik + 1;
     produkt.cenaczesciowa = produkt.licznik * produkt.produkt.cena;
 
-    // this.setState(() => {
-    //   return { Cart : [...tempCart] };
-    // });
     this.setState(() => {
       return { Cart : [...tempCart] };
     }, () => {
@@ -252,10 +188,6 @@ ilosc(){
     {
       produkt.licznik = produkt.licznik - 1;
       produkt.cenaczesciowa = produkt.licznik * produkt.produkt.cena;
-  
-      // this.setState(() => {
-      //   return { Cart : [...tempCart] };
-      // });
       this.setState(() => {
         return { Cart : [...tempCart] };
       }, () => {
@@ -276,19 +208,14 @@ usuwanieZbazy = async (product) => {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${parsedData.access}`,
         },
-        //body: JSON.stringify({ "pk": produkt.pk })
       };
-      //let pk = produkt.pk;
       try {
         console.log(`http://localhost:8000/meals/${product.pk}/`)
         const response = await fetch(`http://localhost:8000/meals/${product.pk}/`, requestOptions);
         if (response.ok) {
           localStorage.setItem('successMessage', 'Produkt usunięto z bazy');
-          // Successful deletion
-          console.log('Product deleted successfully');
           window.location.reload();
         } else {
-          // Error handling
           console.error('Error deleting product:', response.status, response.statusText);
           localStorage.setItem('Error', 'Błąd podczas usuwania produktu');
         }
@@ -304,12 +231,6 @@ usuwanieZbazy = async (product) => {
   usuwanie = (cartData) => {
     let tempCart = [...this.state.Cart];
     tempCart = tempCart.filter(item => item !== cartData);
-
-    // this.setState(() => {
-    //   return {
-    //     Cart: [...tempCart],
-    //   };
-    // });
     this.setState(() => {
       return {
         Cart: [...tempCart],
@@ -336,24 +257,21 @@ usuwanieZbazy = async (product) => {
           detailProduct: this.state.detailProduct,
           sumaKoszyka: this.state.sumaKoszyka,
           Cart: this.state.Cart,
-          platnosc: this.state.platnosc,
           history: this.state.history,
           ProduktHistoria: this.ProduktHistoria,
-          br: this.br,
-          ustaw: this.ustaw,
+          zwracaProdukt: this.zwracaProdukt,
+          ustawProdukt: this.ustawProdukt,
           CzyWkoszyku: this.CzyWkoszyku,
           DodajDoKoszyka: this.DodajDoKoszyka,
           usuwanie: this.usuwanie,
           dodawanie: this.dodawanie,
           odejmowanie: this.odejmowanie,
           ilosc: this.ilosc,
-          zm: this.zm,
+          platnosc: this.platnosc,
           usuwanieZbazy: this.usuwanieZbazy,
           HistoryGetter: this.HistoryGetter,
-          getMealById: this.getMealById,
-          zwracanieProduktuHistoria: this.zwracanieProduktuHistoria,
-          
 
+          zwracanieProduktuHistoria: this.zwracanieProduktuHistoria,
       }}
 
       >

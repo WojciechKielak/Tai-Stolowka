@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { ProductCustomer } from '../contexAPI';
 import { Button, Col, Container, Row } from 'react-bootstrap';
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import toast, { Toaster } from "react-hot-toast";
-import { Link, withRouter } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 export default class Cart extends Component {
   render() {
@@ -14,7 +12,6 @@ export default class Cart extends Component {
                 if( value.Cart.length > 0 ){
                         return (
                             <div  style={{ fontSize: '18px', marginTop:'30px'}}>
-                                {/* <div> <h1>Koszyk</h1></div> */}
                                 <div className='row' style={{ fontSize: '18px' }}>
                                     <div className='col-10 max-auto col-lg-2 text-center'>
                                         <strong></strong>
@@ -97,7 +94,6 @@ export default class Cart extends Component {
                 
             }}
         </ProductCustomer>
-        <Toaster />
       </section>
     )
   }
