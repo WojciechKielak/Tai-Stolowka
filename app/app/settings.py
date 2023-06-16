@@ -9,8 +9,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=h_din()$q0)-k$70j6)!!g$w48u85vi_84s1_k1xylztk&69a'
 
 DEBUG = True
-
-ALLOWED_HOSTS = []
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '2ef15c2f816e27'
+EMAIL_HOST_PASSWORD = 'f9d52cb034c50a'
+EMAIL_PORT = '2525'
+ALLOWED_HOSTS = ['7b4d-83-5-147-28.ngrok-free.app','localhost', '127.0.0.1']
 CORS_ALLOW_ALL_ORIGINS = True
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'mediafiles')
@@ -163,3 +167,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+PAYPAL_CLIENT_ID = "Abwme5PEsYp3jeVsDmlzwXCnXr8uPjpqa4MfWwPTyl5PF9-lvwJn14xmS5DVeC2vcQTc6rTYNm-kQDeV"
+PAYPAL_CLIENT_SECRET = "EOOQnI80GjcZ3fJe9wBTsMTnL2qEIw5FVhgCNXUEYXZB4uoC18YSx7jUk3UX5XQhxo5gdL7iwD2kMqSD"
+PAYPAL_WEBHOOK_ID = "3UF42534E3740401X"
