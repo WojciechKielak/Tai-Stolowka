@@ -90,7 +90,6 @@ const Orders = () => {
     }
   };
 
-  let licznik = 0;
   return (
     <div className="container" style={{ marginTop: '30px' }}>
       <ProductCustomer>
@@ -99,7 +98,7 @@ const Orders = () => {
             {history.map(
               (historyItem) =>
                 !historyItem.status &&
-                historyItem.cart_items.length > 0 && (licznik += 1,
+                historyItem.cart_items.length > 0 && (
                   <React.Fragment>
                     <div className="row" style={{ fontSize: '20px' }}>
                       <div className="col-10 max-auto col-lg-6">
@@ -167,7 +166,6 @@ const Orders = () => {
                   
                 )
             )}
-            {licznik === 0 && <h1>Brak zamówień</h1>}
           </>
         )}
       </ProductCustomer>

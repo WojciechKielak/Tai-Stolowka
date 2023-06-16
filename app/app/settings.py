@@ -11,10 +11,10 @@ SECRET_KEY = 'django-insecure-=h_din()$q0)-k$70j6)!!g$w48u85vi_84s1_k1xylztk&69a
 DEBUG = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
-EMAIL_HOST_USER = '2ef15c2f816e27'
-EMAIL_HOST_PASSWORD = 'f9d52cb034c50a'
+EMAIL_HOST_USER = 'd06f8c667ed713'
+EMAIL_HOST_PASSWORD = '1fdc85cc14b8d6'
 EMAIL_PORT = '2525'
-ALLOWED_HOSTS = ['7b4d-83-5-147-28.ngrok-free.app','localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['f36c-2a01-110f-405-7b00-84d9-dab3-2198-92f.ngrok-free.app','localhost', '127.0.0.1']#,'7b4d-83-5-147-28.ngrok-free.app']
 CORS_ALLOW_ALL_ORIGINS = True
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'mediafiles')
@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'account',
     'meals',
     'history',
-    
+    'payments',
     'rest_framework',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
@@ -170,4 +170,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 PAYPAL_CLIENT_ID = "Abwme5PEsYp3jeVsDmlzwXCnXr8uPjpqa4MfWwPTyl5PF9-lvwJn14xmS5DVeC2vcQTc6rTYNm-kQDeV"
 PAYPAL_CLIENT_SECRET = "EOOQnI80GjcZ3fJe9wBTsMTnL2qEIw5FVhgCNXUEYXZB4uoC18YSx7jUk3UX5XQhxo5gdL7iwD2kMqSD"
-PAYPAL_WEBHOOK_ID = "3UF42534E3740401X"
+PAYPAL_WEBHOOK_ID = "7NE248627X573811J"

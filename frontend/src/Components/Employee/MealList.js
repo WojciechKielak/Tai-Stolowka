@@ -24,7 +24,6 @@ export default class MealList extends Component {
       <section>
         <ProductCustomer>
             { value => {
-                // this.wyswietlanie(); 
                         return (
                             <div style={{marginTop:'30px'}}>
                                 <div> 
